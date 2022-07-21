@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Transaction">
+
+
+    <TextView
+        android:id="@+id/question_text_view"
+        style="@style/TextStyle"
+        android:layout_height="wrap_content"
+        android:text="New Transaction"
+        android:textSize="25dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/amount_text_view"
+        style="@style/TextStyle"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:text="$0"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/Expense_button"
+        style="@style/ButtonStyle"
+        android:text="@string/Expense"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Income_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amount_text_view"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <Button
+        android:id="@+id/Income_button"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Income"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/Expense_button"
+        app:layout_constraintTop_toBottomOf="@+id/amount_text_view"
+        app:layout_constraintVertical_bias="0.069" />
+
+    <Button
+        android:id="@+id/datePickerButton"
+        style="?android:spinnerStyle"
+        android:layout_width="322dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="24dp"
+        android:onClick="openDatePicker"
+        android:text="JAN 01 2020"
+        android:textColor="#36BFAF"
+        android:textSize="20dp"
+        app:layout_constraintHorizontal_bias="0.95"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Income_button" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="72dp"
+        android:layout_height="52dp"
+        app:srcCompat="@drawable/ic_Calander"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="226dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
