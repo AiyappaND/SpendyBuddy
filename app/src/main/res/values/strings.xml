@@ -11,4 +11,32 @@
     <string name="login_failed">"Login failed"</string>
     <string name="Expense">Expense</string>
     <string name="Income">Income</string>
+
+
+    <string-array name="categories">
+        <item>Please select the category</item>
+        <item>Clothes</item>
+        <item>Eating Out</item>
+        <item>Entertainment</item>
+        <item>Gas</item>
+        <item>Gifts</item>
+        <item>Groceries</item>
+        <item>Holidays</item>
+        <item>Investments</item>
+        <item>Kids</item>
+        <item>Shopping</item>
+        <item>Sports</item>
+        <item>Travel</item>
+        <item>Other</item>
+    </string-array>
+
+    <string-array name="cashFrom">
+        <item>Please select money category</item>
+        <item>Cash</item>
+        <item>Debit Card</item>
+        <item>Credit Card</item>
+        <item>Gift</item>
+        <item>Paycheck</item>
+        <item>Tips</item>
+    </string-array>
 </resources>

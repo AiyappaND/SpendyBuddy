@@ -8,8 +8,9 @@
 
 
     <TextView
-        android:id="@+id/question_text_view"
+        android:id="@+id/transaction_text_view"
         style="@style/TextStyle"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="New Transaction"
@@ -17,8 +18,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="match_parent" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/amount_text_view"
@@ -26,13 +27,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:gravity="center"
-        android:text="$0"
+        android:hint="$0"
         android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_width="wrap_content" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <Button
@@ -59,6 +59,20 @@
         app:layout_constraintTop_toBottomOf="@+id/amount_text_view"
         app:layout_constraintVertical_bias="0.069" />
 
+
+    <ImageView
+        android:id="@+id/calendarImage"
+        android:layout_width="63dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/datePickerButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
+        app:layout_constraintVertical_bias="0.004"
+        app:srcCompat="@drawable/ic_calander2" />
+
     <Button
         android:id="@+id/datePickerButton"
         style="?android:spinnerStyle"
@@ -69,21 +83,66 @@
         android:text="JAN 01 2020"
         android:textColor="#36BFAF"
         android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/Income_button" />
+        app:layout_constraintStart_toEndOf="@+id/calendarImage"
+        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/categoryDropDown"
+        style="?android:spinnerStyle"
+        android:layout_width="322dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="92dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/categoryImage"
+        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintVertical_bias="0.018" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/categoryImage"
         android:layout_width="63dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toStartOf="@+id/datePickerButton"
+        android:layout_marginTop="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/categoryDropDown"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Expense_button"
-        app:srcCompat="@drawable/ic_calander2" />
+        app:layout_constraintVertical_bias="0.002"
+        app:srcCompat="@drawable/ic_shopping" />
+
+    <Spinner
+        android:id="@+id/fromBucket"
+        style="?android:spinnerStyle"
+        android:layout_width="322dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="92dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="#36BFAF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/moneyImage"
+        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintVertical_bias="0.202" />
+
+    <ImageView
+        android:id="@+id/moneyImage"
+        android:layout_width="71dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="172dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fromBucket"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_money_category" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
