@@ -7,8 +7,10 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.Spinner;
 
 import java.util.Calendar;
 
@@ -24,6 +26,19 @@ public class Transaction extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
+        // This are for the bucket
+        Spinner categorySpinner = findViewById(R.id.categoryDropDown);
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Transaction.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.categories));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(myAdapter);
+
+        // Where the money is from
+        Spinner fromSpinner = findViewById(R.id.fromBucket);
+        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(Transaction.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.cashFrom));
+        myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fromSpinner.setAdapter(myAdapter2);
     }
 
     private String getTodaysDate()
@@ -102,4 +117,6 @@ public class Transaction extends AppCompatActivity {
     {
         datePickerDialog.show();
     }
+
+
 }
