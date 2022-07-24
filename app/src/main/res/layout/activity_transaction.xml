@@ -15,25 +15,30 @@
         android:gravity="center"
         android:text="New Transaction"
         android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
-    <TextView
-        android:id="@+id/amount_text_view"
-        style="@style/TextStyle"
+    <EditText
+        android:id="@+id/amount_ET"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:background="@null"
         android:gravity="center"
         android:hint="$0"
-        android:textSize="25dp"
+        android:onClick="changeDollarFormat"
+        android:textColor="#36BFAF"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
 
     <Button
         android:id="@+id/Expense_button"
@@ -41,36 +46,35 @@
         android:text="@string/Expense"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/Income_button"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amount_text_view"
-        app:layout_constraintVertical_bias="0.069" />
+        app:layout_constraintTop_toBottomOf="@+id/amount_ET"
+        app:layout_constraintVertical_bias="0.01" />
 
     <Button
         android:id="@+id/Income_button"
         style="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
         android:text="@string/Income"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/Expense_button"
-        app:layout_constraintTop_toBottomOf="@+id/amount_text_view"
-        app:layout_constraintVertical_bias="0.069" />
-
+        app:layout_constraintTop_toBottomOf="@+id/amount_ET"
+        app:layout_constraintVertical_bias="0.01" />
 
     <ImageView
         android:id="@+id/calendarImage"
         android:layout_width="63dp"
         android:layout_height="50dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/datePickerButton"
         app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Expense_button"
-        app:layout_constraintVertical_bias="0.004"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_calander2" />
 
     <Button
@@ -78,7 +82,7 @@
         style="?android:spinnerStyle"
         android:layout_width="322dp"
         android:layout_height="52dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="4dp"
         android:onClick="openDatePicker"
         android:text="JAN 01 2020"
         android:textColor="#36BFAF"
@@ -90,59 +94,106 @@
         app:layout_constraintTop_toBottomOf="@+id/Income_button"
         app:layout_constraintVertical_bias="0.0" />
 
+    <ImageView
+        android:id="@+id/categoryImage"
+        android:layout_width="63dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/categoryDropDown"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_shopping" />
+
     <Spinner
         android:id="@+id/categoryDropDown"
         style="?android:spinnerStyle"
         android:layout_width="322dp"
         android:layout_height="52dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/categoryImage"
         app:layout_constraintTop_toBottomOf="@+id/Income_button"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/categoryImage"
+        android:id="@+id/moneyImage"
         android:layout_width="63dp"
         android:layout_height="50dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="146dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/categoryDropDown"
+        app:layout_constraintEnd_toStartOf="@+id/fromBucket"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Expense_button"
-        app:layout_constraintVertical_bias="0.002"
-        app:srcCompat="@drawable/ic_shopping" />
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_money_category" />
 
     <Spinner
         android:id="@+id/fromBucket"
         style="?android:spinnerStyle"
         android:layout_width="322dp"
         android:layout_height="52dp"
-        android:layout_marginTop="92dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="146dp"
         android:textColor="#36BFAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/moneyImage"
         app:layout_constraintTop_toBottomOf="@+id/Income_button"
-        app:layout_constraintVertical_bias="0.202" />
+        app:layout_constraintVertical_bias="0.0" />
+
 
     <ImageView
-        android:id="@+id/moneyImage"
-        android:layout_width="71dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="172dp"
+        android:id="@+id/noteImage"
+        android:layout_width="63dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="210dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/fromBucket"
+        app:layout_constraintEnd_toStartOf="@+id/note"
+        app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Expense_button"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_money_category" />
+        app:srcCompat="@drawable/ic_note" />
+
+
+    <EditText
+        android:id="@+id/note"
+        style="?android:spinnerStyle"
+        android:layout_width="322dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="210dp"
+        android:textColor="#36BFAF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/noteImage"
+        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/Submit_button"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="232dp"
+        android:background="@drawable/round_button"
+        android:backgroundTint="@color/green"
+        android:gravity="center_horizontal"
+        android:text="SUBMIT"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amount_ET"
+        app:layout_constraintVertical_bias="1.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
