@@ -1,15 +1,20 @@
 package com.example.spendybuddy;
 
+import static java.lang.Boolean.TRUE;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.util.Calendar;
@@ -18,6 +23,9 @@ public class Transaction extends AppCompatActivity {
 
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
+    private EditText dollarAmount;
+    private boolean terminateThread = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,10 @@ public class Transaction extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
+
+        dollarAmount = (EditText) findViewById(R.id.amount_ET);
+
+
         // This are for the bucket
         Spinner categorySpinner = findViewById(R.id.categoryDropDown);
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Transaction.this,
@@ -39,7 +51,9 @@ public class Transaction extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.cashFrom));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fromSpinner.setAdapter(myAdapter2);
+
     }
+
 
     private String getTodaysDate()
     {
@@ -60,9 +74,7 @@ public class Transaction extends AppCompatActivity {
                 month = month + 1;
                 String date = makeDateString(day, month, year);
                 dateButton.setText(date);
-
             }
-
         };
 
         Calendar cal = Calendar.getInstance();
@@ -74,7 +86,6 @@ public class Transaction extends AppCompatActivity {
         Log.d("inside Initdatepicker", "initDatePicker: ");
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-
     }
 
     private String makeDateString(int day, int month, int year)
@@ -113,9 +124,26 @@ public class Transaction extends AppCompatActivity {
         return "JAN";
     }
 
+
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
+    }
+
+    // To do: Come back to this one. Can't get the dollar sign to work yet
+    public void changeDollarFormat(View view) {
+
+        dollarAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable s) {
+                dollarAmount.setText("$" + dollarAmount.getText().toString());
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
     }
 
 
