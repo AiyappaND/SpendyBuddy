@@ -21,6 +21,16 @@
         <item name="android:textAlignment">center</item>
     </style>
 
+    <style name="ButtonLandStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:backgroundTint">#36BFAF</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 
 
 </resources>
