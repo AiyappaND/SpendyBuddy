@@ -25,6 +25,7 @@ public class Transaction extends AppCompatActivity {
     private Button dateButton;
     private EditText dollarAmount;
     private boolean terminateThread = false;
+    private EditText note;
 
 
     @Override
@@ -34,9 +35,8 @@ public class Transaction extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
-
+        note = findViewById(R.id.note);
         dollarAmount = (EditText) findViewById(R.id.amount_ET);
-
 
         // This are for the bucket
         Spinner categorySpinner = findViewById(R.id.categoryDropDown);
@@ -51,6 +51,9 @@ public class Transaction extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.cashFrom));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fromSpinner.setAdapter(myAdapter2);
+
+
+
 
     }
 

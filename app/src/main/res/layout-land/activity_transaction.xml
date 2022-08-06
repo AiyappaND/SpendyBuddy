@@ -7,6 +7,16 @@
     tools:context=".Transaction">
 
 
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal" />
+
     <TextView
         android:id="@+id/transaction_text_view"
         style="@style/TextStyle"
@@ -43,25 +53,12 @@
     <Button
         android:id="@+id/Expense_button"
         style="@style/ButtonLandStyle"
+        android:layout_marginStart="136dp"
         android:text="@string/Expense"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Income_button"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount_ET"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/Income_button"
-        style="@style/ButtonLandStyle"
-        android:layout_marginStart="10dp"
-        android:text="@string/Income"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/Expense_button"
-        app:layout_constraintTop_toBottomOf="@+id/amount_ET"
-        app:layout_constraintVertical_bias="0.01" />
 
     <ImageView
         android:id="@+id/calendarImage"
@@ -85,7 +82,7 @@
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/calendarImage"
-        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
@@ -108,7 +105,7 @@
         android:layout_marginTop="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/categoryImage"
-        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
@@ -132,7 +129,7 @@
         android:textColor="#36BFAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/moneyImage"
-        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -158,7 +155,7 @@
         android:textColor="#36BFAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/noteImage"
-        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
