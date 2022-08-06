@@ -11,6 +11,7 @@
     <string name="login_failed">"Login failed"</string>
     <string name="Expense">Expense</string>
     <string name="Income">Income</string>
+    <string name="enter_note_hint">Went to movie</string>
 
 
     <string-array name="categories">
