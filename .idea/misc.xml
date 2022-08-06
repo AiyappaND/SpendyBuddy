@@ -9,9 +9,10 @@
         <entry key="app/src/main/res/layout-land/activity_transaction.xml" value="0.33" />
         <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.345703125" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.241796875" />
+        <entry key="app/src/main/res/layout/activity_income.xml" value="0.2324074074074074" />
         <entry key="app/src/main/res/layout/activity_landing_page.xml" value="0.3015625" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3223958333333333" />
-        <entry key="app/src/main/res/layout/activity_transaction.xml" value="0.44940185546875" />
+        <entry key="app/src/main/res/layout/activity_transaction.xml" value="0.33" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.266" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.266" />
       </map>
