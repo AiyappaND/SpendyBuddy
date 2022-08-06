@@ -165,6 +165,7 @@
         android:layout_height="52dp"
         android:layout_marginTop="210dp"
         android:textColor="#36BFAF"
+        android:hint="@string/enter_note_hint"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

@@ -24,8 +24,9 @@ public class Transaction extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     private EditText dollarAmount;
-    private boolean terminateThread = false;
     private EditText note;
+    private boolean terminateThread = false;
+
 
 
     @Override
@@ -35,8 +36,10 @@ public class Transaction extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
-        note = findViewById(R.id.note);
+
         dollarAmount = (EditText) findViewById(R.id.amount_ET);
+        note = findViewById(R.id.note);
+
 
         // This are for the bucket
         Spinner categorySpinner = findViewById(R.id.categoryDropDown);
