@@ -28,6 +28,7 @@ public class Transaction extends AppCompatActivity {
     private boolean terminateThread = false;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +39,7 @@ public class Transaction extends AppCompatActivity {
 
         dollarAmount = (EditText) findViewById(R.id.amount_ET);
         note = findViewById(R.id.note);
+
 
         // This are for the bucket
         Spinner categorySpinner = findViewById(R.id.categoryDropDown);
@@ -52,6 +54,9 @@ public class Transaction extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.cashFrom));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fromSpinner.setAdapter(myAdapter2);
+
+
+
 
     }
 
