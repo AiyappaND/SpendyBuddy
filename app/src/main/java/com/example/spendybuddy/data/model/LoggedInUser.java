@@ -6,18 +6,18 @@ package com.example.spendybuddy.data.model;
 public class LoggedInUser {
 
     private String userId;
-    private String email;
+    private String password;
 
-    public LoggedInUser(String userId, String email) {
+    public LoggedInUser(String userId, String password) {
         this.userId = userId;
-        this.email = email;
+        this.password = password;
     }
 
     public String getUserId() {
         return userId;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPassword() {
+        return password;
     }
 }
