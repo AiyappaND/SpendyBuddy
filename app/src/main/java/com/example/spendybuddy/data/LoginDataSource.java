@@ -42,8 +42,7 @@ public class LoginDataSource {
 
     // TODO: Temporary method to check DB operations, move out later
     public void writeNewUser(String userId, String password) {
-        LoggedInUser user = new LoggedInUser(userId, "testemail2@email.com");
-
+        LoggedInUser user = new LoggedInUser(userId, password);
         mDatabase.child("users_auth").child(userId).setValue(user);
 
     }
