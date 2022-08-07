@@ -6,4 +6,123 @@
     android:layout_height="match_parent"
     tools:context=".DeleteTransaction">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Transaction"
+        tools:layout_editor_absoluteX="46dp"
+        tools:layout_editor_absoluteY="-96dp">
+
+
+        <ImageView
+            android:id="@+id/calendarImage"
+            android:layout_width="63dp"
+            android:layout_height="55dp"
+            app:srcCompat="@drawable/ic_calander2"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <Button
+            android:id="@+id/datePickerButton"
+            style="?android:spinnerStyle"
+            android:layout_width="323dp"
+            android:layout_height="55dp"
+            android:onClick="openDatePicker"
+            android:text="JAN 01 2020"
+            android:textColor="#36BFAF"
+            android:textSize="20dp"
+            tools:layout_editor_absoluteX="76dp"
+            tools:layout_editor_absoluteY="175dp" />
+
+        <ImageView
+            android:id="@+id/categoryImage"
+            android:layout_width="63dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/ic_shopping"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <Spinner
+            android:id="@+id/categoryDropDown"
+            style="?android:spinnerStyle"
+            android:layout_width="323dp"
+            android:layout_height="52dp"
+            tools:layout_editor_absoluteX="76dp"
+            tools:layout_editor_absoluteY="251dp" />
+
+        <ImageView
+            android:id="@+id/moneyImage"
+            android:layout_width="63dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/ic_money_category"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="317dp" />
+
+        <Spinner
+            android:id="@+id/fromBucket"
+            style="?android:spinnerStyle"
+            android:layout_width="323dp"
+            android:layout_height="52dp"
+            android:textColor="#36BFAF"
+            tools:layout_editor_absoluteX="76dp"
+            tools:layout_editor_absoluteY="317dp" />
+
+
+        <ImageView
+            android:id="@+id/noteImage"
+            android:layout_width="63dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/ic_note"
+            tools:layout_editor_absoluteX="13dp"
+            tools:layout_editor_absoluteY="381dp" />
+
+
+        <EditText
+
+            android:id="@+id/note"
+            style="?android:spinnerStyle"
+            android:layout_width="323dp"
+            android:layout_height="52dp"
+            android:hint="@string/enter_note_hint"
+            android:textColor="#36BFAF"
+            tools:layout_editor_absoluteX="76dp"
+            tools:layout_editor_absoluteY="381dp" />
+
+        <Button
+            android:id="@+id/button_delete"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_button"
+
+            android:gravity="center_horizontal"
+            android:text="DELETE"
+            android:textSize="20sp"
+            android:tint="@color/green"
+            tools:layout_editor_absoluteX="109dp"
+            tools:layout_editor_absoluteY="512dp" />
+
+        <TextView
+            android:id="@+id/transaction_delete_name"
+            style="@style/TextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="25dp"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="84dp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/transaction_delete_header"
+        style="@style/TextStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Delete Transaction"
+        android:textSize="25dp"
+        tools:layout_editor_absoluteX="8dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

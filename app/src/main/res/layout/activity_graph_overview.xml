@@ -76,7 +76,7 @@
                     <View
                         android:layout_width="15dp"
                         android:layout_height="match_parent"
-                        android:background="@color/Python"/>
+                        android:background="@color/color_one"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -152,13 +152,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Use of Programming Languages(In Percentage):"
+                android:text="Budget Categories"
                 android:textSize="23sp"
                 android:textStyle="bold"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="20dp"/>
 
-            <!--View to display the line-->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -179,7 +178,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="R"
+                    android:text="One"
                     android:textSize="18sp"/>
 
                 <TextView
@@ -254,16 +253,16 @@
                     android:textSize="18sp"/>
 
                 <TextView
+                    android:id="@+id/tvCPP"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:text="0"
-                    android:id="@+id/tvCPP"
-                    android:textAlignment="textEnd"
-                    android:textSize="18sp"
-                    android:textColor="@color/color_one"
-                    android:textStyle="bold"
+                    android:layout_alignParentRight="true"
                     android:fontFamily="sans-serif-light"
-                    android:layout_alignParentRight="true"/>
+                    android:text="0"
+                    android:textAlignment="textEnd"
+                    android:textColor="@color/color_one"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
             </RelativeLayout>
             <View
