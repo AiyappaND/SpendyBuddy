@@ -1,21 +1,12 @@
 package com.example.spendybuddy.data.model;
 
 /**
- * Data class that captures user information for logged in users retrieved from LoginRepository
+ * Data class that captures user information for logged in users
  */
 public class UserDetails {
 
     private String userId;
     private String fullName;
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public String getEmailId() {
-        return emailId;
-    }
-
     private String emailId;
 
 
@@ -27,6 +18,14 @@ public class UserDetails {
 
     public String getUserId() {
         return userId;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getEmailId() {
+        return emailId;
     }
 
 }
