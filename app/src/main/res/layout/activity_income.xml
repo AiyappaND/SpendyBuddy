@@ -7,6 +7,7 @@
     tools:context=".IncomeActivity">
 
 
+
     <TextView
         android:id="@+id/monthlyIncome_text_view"
         style="@style/TextStyle"
@@ -34,11 +35,41 @@
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" />
+        app:layout_constraintVertical_bias="0.111" />
 
+    <ImageView
+        android:id="@+id/calendarImage"
+        android:layout_width="63dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/datePickerIncomeButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/income_amount_ET"
+        app:layout_constraintVertical_bias="0.083"
+        app:srcCompat="@drawable/ic_calander2" />
+
+    <Button
+        android:id="@+id/datePickerIncomeButton"
+        style="?android:spinnerStyle"
+        android:layout_width="322dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="4dp"
+        android:onClick="openDatePicker"
+        android:text="JAN 01 2020"
+        android:textColor="#36BFAF"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/calendarImage"
+        app:layout_constraintTop_toBottomOf="@+id/income_amount_ET"
+        app:layout_constraintVertical_bias="0.083" />
 
     <ImageView
         android:id="@+id/noteImage2"
@@ -49,8 +80,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.342"
+        app:layout_constraintTop_toBottomOf="@+id/calendarImage"
+        app:layout_constraintVertical_bias="0.115"
         app:srcCompat="@drawable/ic_note" />
 
     <EditText
@@ -65,8 +96,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/noteImage2"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.343" />
+        app:layout_constraintTop_toBottomOf="@+id/datePickerIncomeButton"
+        app:layout_constraintVertical_bias="0.116" />
 
     <Button
         android:id="@+id/Submit_button"
@@ -80,10 +111,10 @@
         android:tint="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.568" />
+        app:layout_constraintVertical_bias="0.658" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/home2_button"
@@ -92,10 +123,10 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintHorizontal_bias="0.921"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.721"
+        app:layout_constraintVertical_bias="0.673"
         app:srcCompat="@drawable/ic_home" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
