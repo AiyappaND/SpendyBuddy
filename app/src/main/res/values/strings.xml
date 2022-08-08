@@ -13,6 +13,8 @@
     <string name="Expense">Expense</string>
     <string name="Income">Income</string>
     <string name="enter_note_hint">Went to movie</string>
+    <string name="income">Income</string>
+    <string name="log_out">Log Out</string>
 
 
     <string-array name="categories">

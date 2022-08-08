@@ -27,7 +27,7 @@
     <EditText
         android:id="@+id/expense_amount_Monthly"
         android:layout_width="116dp"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:background="@null"
         android:gravity="center"
         android:hint="$0"
@@ -60,7 +60,7 @@
     <EditText
         android:id="@+id/income_amount_Monthly"
         android:layout_width="116dp"
-        android:layout_height="44dp"
+        android:layout_height="48dp"
         android:background="@null"
         android:gravity="center"
         android:hint="$0"
@@ -177,7 +177,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:text="Income"
+        android:text="@string/income"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/add_Income"
         app:layout_constraintTop_toBottomOf="@+id/Expensebutton"
@@ -196,13 +196,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.744"
         app:srcCompat="@drawable/ic_logout"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
+        android:focusable="true" />
 
     <Button
         android:id="@+id/log_out_warming"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log Out"
+        android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
