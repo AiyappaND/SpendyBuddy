@@ -15,6 +15,7 @@
     <string name="enter_note_hint">Went to movie</string>
     <string name="income">Income</string>
     <string name="log_out">Log Out</string>
+    <string name="take_photo">Take pic</string>
 
 
     <string-array name="categories">
