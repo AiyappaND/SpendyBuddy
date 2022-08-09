@@ -168,6 +168,8 @@
         android:layout_marginTop="210dp"
         android:textColor="#36BFAF"
         android:hint="@string/enter_note_hint"
+        android:imeOptions="actionDone"
+        android:inputType="text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

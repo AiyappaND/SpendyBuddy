@@ -19,6 +19,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.example.spendybuddy.databinding.SignupBinding;
 
+import java.util.HashMap;
+
 public class SignupActivity extends AppCompatActivity {
     private DatabaseReference mDatabase;
     private SignupBinding binding;
@@ -62,22 +64,56 @@ public class SignupActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Not a valid email address" ,
                             Toast.LENGTH_LONG).show();
                 }
+                else if (checkInvalidUsernameChars(username)) {
+                    Toast.makeText(getApplicationContext(), "Following characters not allowed in username: # . $ [ ]" ,
+                            Toast.LENGTH_LONG).show();
+                }
                 else {
-                    LoggedInUser user = new LoggedInUser(username, password);
-                    UserDetails userDeets = new UserDetails(username, fullName, email);
-                    addUserToDatabase(user, userDeets);
-                    Intent landingPageIntent = new Intent(getApplicationContext(),
-                            LandingPageActivity.class);
-                    landingPageIntent.putExtra("username", user.getUserId());
-                    startActivity(landingPageIntent);
+                    mDatabase.child("users_auth").child(username).get().addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            HashMap<String, String> result = (HashMap<String, String>) task.getResult().getValue();
+                            if (result.get("userId") != null) {
+                                Toast.makeText(getApplicationContext(), "Username exists, choose another username" ,
+                                        Toast.LENGTH_LONG).show();
+                            }
+                            else {
+                                createNewUser(username, password, fullName, email);
+                            }
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Something went wrong, try again later" ,
+                                    Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             }
         });
 
     }
 
+    private void createNewUser(String username, String password, String fullName, String email) {
+        LoggedInUser user = new LoggedInUser(username, password);
+        UserDetails userDeets = new UserDetails(username, fullName, email);
+        addUserToDatabase(user, userDeets);
+        Intent landingPageIntent = new Intent(getApplicationContext(),
+                LandingPageActivity.class);
+        landingPageIntent.putExtra("username", user.getUserId());
+        startActivity(landingPageIntent);
+    }
+
     private void addUserToDatabase(LoggedInUser user, UserDetails userDeets) {
         mDatabase.child("users_auth").child(user.getUserId()).setValue(user);
         mDatabase.child("user_details").child(user.getUserId()).setValue(userDeets);
+    }
+
+    private boolean checkInvalidUsernameChars(String username) {
+        String[] invalid_characters = new String[] {".", "#", "$", "[", "]"};
+        for (String s:
+             invalid_characters) {
+            if (username.contains(s)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

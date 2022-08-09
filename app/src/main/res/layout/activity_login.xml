@@ -17,8 +17,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="cursive"
         android:gravity="fill"
-        android:shadowColor="#3F51B5"
         android:text="Welcome to Spendy!"
+        android:textColor="#4CAF50"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,11 +62,12 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="64dp"
         android:enabled="false"
+        android:shadowColor="#4CAF50"
         android:text="@string/action_sign_in"
+        app:layout_constraintBottom_toTopOf="@+id/signup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintBottom_toTopOf="@+id/signup"
         app:layout_constraintVertical_bias="0.2" />
 
     <Button
@@ -76,6 +77,7 @@
         android:layout_gravity="start"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="64dp"
+        android:shadowColor="#4CAF50"
         android:text="@string/action_sign_up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
