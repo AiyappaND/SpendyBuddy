@@ -9,4 +9,25 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green">#36BFAF</color>
 
+    <!--    Color wheels for graph view -->
+    <color name="color_one">#ef3c42</color>
+    <color name="color_two">#f25e40</color>
+    <color name="color_three">#f2823a</color>
+    <color name="color_four">#f69537</color>
+    <color name="color_five">#f4aa2f</color>
+    <color name="color_six">#f6c137</color>
+    <color name="color_seven">#fad435</color>
+    <color name="color_eight">#fdf32f</color>
+    <color name="color_nine">#ffff2d</color>
+    <color name="color_ten">#dff429</color>
+    <color name="color_eleven">#a7d52a</color>
+    <color name="color_twelve">#79c725</color>
+    <color name="color_thirteen">#53c025</color>
+    <color name="color_fourteen">#52c67f</color>
+    <color name="color_fifteen">#4daecf</color>
+    <color name="color_sixteen">#4592ca</color>
+    <color name="color_seventeen">#3f77c4</color>
+
 </resources>
+
+

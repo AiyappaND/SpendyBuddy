@@ -194,7 +194,7 @@
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/Submit_button"
+        android:id="@+id/button_delete"
         android:layout_width="125dp"
         android:layout_height="45dp"
         android:layout_marginEnd="220dp"
