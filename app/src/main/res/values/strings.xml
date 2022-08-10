@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Spendy Buddy</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
+    <string name="prompt_email">Enter Username</string>
+    <string name="prompt_password">Enter Password</string>
     <string name="action_sign_in">Login</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="action_sign_up">Sign up</string>

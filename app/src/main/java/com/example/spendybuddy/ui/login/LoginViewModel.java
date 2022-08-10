@@ -44,23 +44,19 @@ public class LoginViewModel extends ViewModel {
     public void login(String username, String password) {
         // can be launched in a separate asynchronous job
         final LoggedInUser[] user = {null};
-        mDatabase.child("users_auth").child(username).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>()
-        {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (task.isSuccessful()) {
-                    HashMap<String, String> result = (HashMap<String, String>) task.getResult().getValue();
-                    user[0] = new LoggedInUser(result.get("userId"), result.get("password"));
-                    if ((user[0].getPassword().equals(password))) {
-                        loginResult.setValue(new LoginResult(new LoggedInUserView(user[0].getUserId())));
-                    }
-                    else {
-                        loginResult.setValue(new LoginResult(R.string.login_failed));
-                    }
+        mDatabase.child("users_auth").child(username).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                HashMap<String, String> result = (HashMap<String, String>) task.getResult().getValue();
+                user[0] = new LoggedInUser(result.get("userId"), result.get("password"));
+                if ((user[0].getPassword().equals(password))) {
+                    loginResult.setValue(new LoginResult(new LoggedInUserView(user[0].getUserId())));
                 }
                 else {
                     loginResult.setValue(new LoginResult(R.string.login_failed));
                 }
+            }
+            else {
+                loginResult.setValue(new LoginResult(R.string.login_failed));
             }
         });
     }
@@ -76,8 +72,14 @@ public class LoginViewModel extends ViewModel {
     }
 
     private boolean isUserNameValid(String username) {
+        String[] invalid_characters = new String[] {".", "#", "$", "[", "]"};
         if (username == null) {
             return false;
+        }
+        for (String s : invalid_characters) {
+            if (username.contains(s)) {
+                return false;
+            }
         }
         if (username.contains("@")) {
             return Patterns.EMAIL_ADDRESS.matcher(username).matches();
