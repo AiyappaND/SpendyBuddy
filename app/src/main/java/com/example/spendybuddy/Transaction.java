@@ -2,11 +2,21 @@ package com.example.spendybuddy;
 
 import static java.lang.Boolean.TRUE;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -15,7 +25,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Calendar;
 
@@ -24,7 +38,15 @@ public class Transaction extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
     private EditText dollarAmount;
+    private EditText note;
     private boolean terminateThread = false;
+    private static final int PERMISSION_CODE = 1000;
+    private static final int IMAGE_CAPTURE_CODE = 1001;
+    Button mCaptureBtn;
+    ImageView mImageView;
+
+    Uri image_uri;
+
 
 
     @Override
@@ -36,6 +58,10 @@ public class Transaction extends AppCompatActivity {
         dateButton.setText(getTodaysDate());
 
         dollarAmount = (EditText) findViewById(R.id.amount_ET);
+        note = findViewById(R.id.note);
+
+        mImageView = findViewById(R.id.image_view);
+        mCaptureBtn = findViewById(R.id.capture_image_btn);
 
 
         // This are for the bucket
@@ -51,6 +77,41 @@ public class Transaction extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.cashFrom));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fromSpinner.setAdapter(myAdapter2);
+
+        FloatingActionButton home = findViewById(R.id.home_button);
+        home.setOnClickListener(view -> {
+            Intent intent = new Intent(Transaction.this, LandingPageActivity.class);
+            startActivity(intent);
+
+        });
+
+        // Code for taking picture
+        // Reference: https://www.youtube.com/watch?v=LpL9akTG4hI
+        mCaptureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ){
+                    if (checkSelfPermission(Manifest.permission.CAMERA) == PackageManager.PERMISSION_DENIED ||
+                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                                    PackageManager.PERMISSION_DENIED){
+                        String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
+
+                        requestPermissions(permission, PERMISSION_CODE);
+                    }
+                    else{
+                        // Per mission already granted
+                        openCamera();
+                    }
+
+                }
+                else{
+                    openCamera();
+                }
+            }
+        });
+
+
+
 
     }
 
@@ -144,6 +205,42 @@ public class Transaction extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
+    }
+
+    // For the image
+    private void openCamera() {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore. Images.Media.TITLE, "New Pict");
+        values.put(MediaStore. Images.Media.DESCRIPTION, "From the camera");
+        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
+        startActivityForResult(cameraIntent, IMAGE_CAPTURE_CODE);
+    }
+
+    // Hand permission result
+    @SuppressLint("MissingSuperCall")
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case PERMISSION_CODE: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    openCamera();
+                } else {
+                    Toast.makeText(this, "Permission denied...", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+
+    }
+
+    @SuppressLint("MissingSuperCall")
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == IMAGE_CAPTURE_CODE){
+            mImageView.setImageURI(image_uri);
+        }
     }
 
 

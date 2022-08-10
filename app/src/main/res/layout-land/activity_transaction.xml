@@ -7,6 +7,16 @@
     tools:context=".Transaction">
 
 
+    <LinearLayout
+        android:id="@+id/mainLayout"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:focusable="true"
+        android:layout_width="0px"
+        android:layout_height="0px"
+        tools:ignore="MissingConstraints"
+        android:orientation="horizontal" />
+
     <TextView
         android:id="@+id/transaction_text_view"
         style="@style/TextStyle"
@@ -29,6 +39,8 @@
         android:layout_height="wrap_content"
         android:background="@null"
         android:gravity="center"
+        android:imeOptions="actionDone"
+        android:inputType="text"
         android:hint="$0"
         android:onClick="changeDollarFormat"
         android:textColor="#36BFAF"
@@ -43,25 +55,14 @@
     <Button
         android:id="@+id/Expense_button"
         style="@style/ButtonLandStyle"
+        android:layout_width="100dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="132dp"
         android:text="@string/Expense"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/Income_button"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount_ET"
         app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/Income_button"
-        style="@style/ButtonLandStyle"
-        android:layout_marginStart="10dp"
-        android:text="@string/Income"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/Expense_button"
-        app:layout_constraintTop_toBottomOf="@+id/amount_ET"
-        app:layout_constraintVertical_bias="0.01" />
 
     <ImageView
         android:id="@+id/calendarImage"
@@ -78,21 +79,32 @@
         android:id="@+id/datePickerButton"
         style="?android:spinnerStyle"
         android:layout_width="322dp"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:onClick="openDatePicker"
         android:text="JAN 01 2020"
         android:textColor="#36BFAF"
-        android:textSize="20dp"
+        android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/calendarImage"
-        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Spinner
+        android:id="@+id/categoryDropDown"
+        style="?android:spinnerStyle"
+        android:layout_width="322dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/categoryImage"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/categoryImage"
         android:layout_width="63dp"
         android:layout_height="40dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/categoryDropDown"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -100,22 +112,11 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_shopping" />
 
-    <Spinner
-        android:id="@+id/categoryDropDown"
-        style="?android:spinnerStyle"
-        android:layout_width="322dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/categoryImage"
-        app:layout_constraintTop_toBottomOf="@+id/Income_button"
-        app:layout_constraintVertical_bias="0.0" />
-
     <ImageView
         android:id="@+id/moneyImage"
         android:layout_width="63dp"
         android:layout_height="40dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="90dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/fromBucket"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -128,11 +129,11 @@
         style="?android:spinnerStyle"
         android:layout_width="322dp"
         android:layout_height="40dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="90dp"
         android:textColor="#36BFAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/moneyImage"
-        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
         app:layout_constraintVertical_bias="0.0" />
 
 
@@ -140,7 +141,7 @@
         android:id="@+id/noteImage"
         android:layout_width="63dp"
         android:layout_height="40dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="130dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/note"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -154,26 +155,70 @@
         style="?android:spinnerStyle"
         android:layout_width="322dp"
         android:layout_height="40dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="130dp"
+        android:imeOptions="actionDone"
+        android:inputType="text"
         android:textColor="#36BFAF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/noteImage"
-        app:layout_constraintTop_toBottomOf="@+id/Income_button"
+        app:layout_constraintTop_toBottomOf="@+id/Expense_button"
         app:layout_constraintVertical_bias="0.0" />
 
+
     <Button
-        android:id="@+id/Submit_button"
+        android:id="@+id/capture_image_btn"
+        android:layout_width="213dp"
+        android:layout_height="42dp"
+        android:backgroundTint="@color/white"
+        android:text="Take a pic"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26" />
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_width="271dp"
+        android:layout_height="147dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_baseline_image_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.91"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.564"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/button_delete"
         android:layout_width="125dp"
         android:layout_height="45dp"
-        android:layout_marginTop="172dp"
-        android:layout_marginEnd="136dp"
+        android:layout_marginEnd="220dp"
         android:background="@drawable/round_button"
         android:gravity="center_horizontal"
         android:text="SUBMIT"
         android:textSize="20sp"
         android:tint="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/amount_ET" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.915" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/home_button"
+        android:layout_width="49dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="664dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.925"
+        app:srcCompat="@drawable/ic_home" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
