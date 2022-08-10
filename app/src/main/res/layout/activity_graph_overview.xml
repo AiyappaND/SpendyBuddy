@@ -285,30 +285,30 @@
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
+        android:id="@+id/details"
+        android:layout_width="wrap_content"
+        android:layout_height="406dp"
         android:layout_below="@+id/cardViewGraph"
         android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:elevation="10dp"
-        app:cardCornerRadius="10dp"
-        android:id="@+id/details">
+        app:cardCornerRadius="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="259dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="20dp"
                 android:text="Budget Categories"
                 android:textSize="23sp"
-                android:textStyle="bold"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="20dp"/>
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="match_parent"
@@ -321,9 +321,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -331,7 +331,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="1"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/graph_tv1"
@@ -356,9 +356,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -366,7 +366,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="2"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
 
                 <TextView
@@ -394,9 +394,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -404,7 +404,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="4"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/graph_tv3"
@@ -430,9 +430,9 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginRight="25dp"
                 android:layout_marginBottom="10dp">
 
                 <TextView
@@ -440,7 +440,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
                     android:text="2"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/graph_tv4"
@@ -457,6 +457,16 @@
             </RelativeLayout>
 
         </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
 
     </androidx.cardview.widget.CardView>
 
