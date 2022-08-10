@@ -20,6 +20,8 @@ public class LandingPageActivity extends AppCompatActivity {
     private FloatingActionButton FABLogout;
     private Button LogoutButton;
 
+    private Button TransactionList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,7 @@ public class LandingPageActivity extends AppCompatActivity {
         FABLogout = findViewById(R.id.log_out);
         LogoutButton = findViewById(R.id.log_out_warning);
 
+        TransactionList = findViewById(R.id.toTransactionPage);
 
         AddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +48,14 @@ public class LandingPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LandingPageActivity.this, IncomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        TransactionList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LandingPageActivity.this, GraphOverview.class);
                 startActivity(intent);
             }
         });
