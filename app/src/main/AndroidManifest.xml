@@ -37,6 +37,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".data.Transaction.OverviewTransactionActivity"
+            android:exported="true"/>
+
         <activity
             android:name=".ui.signup.SignupActivity"
             android:exported="false" />
@@ -44,6 +48,7 @@
             android:name=".LandingPageActivity"
             android:exported="false">
         </activity>
+
     </application>
 
 </manifest>
