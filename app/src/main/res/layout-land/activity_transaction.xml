@@ -162,17 +162,17 @@
 
     <Button
         android:id="@+id/capture_image_btn"
-        android:layout_width="218dp"
-        android:layout_height="49dp"
-        android:text="Take a pic"
+        android:layout_width="213dp"
+        android:layout_height="42dp"
         android:backgroundTint="@color/white"
+        android:text="Take a pic"
         android:textColor="@color/green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.884"
+        app:layout_constraintHorizontal_bias="0.855"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.356" />
+        app:layout_constraintVertical_bias="0.26" />
 
     <ImageView
         android:id="@+id/image_view"
@@ -185,33 +185,34 @@
         app:layout_constraintHorizontal_bias="0.908"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.712"
+        app:layout_constraintVertical_bias="0.522"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/Submit_button"
         android:layout_width="125dp"
         android:layout_height="45dp"
-        android:layout_marginTop="348dp"
         android:layout_marginEnd="188dp"
         android:background="@drawable/round_button"
         android:gravity="center_horizontal"
         android:text="SUBMIT"
         android:textSize="20sp"
         android:tint="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.915" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/home_button"
         android:layout_width="49dp"
         android:layout_height="51dp"
-        android:layout_marginStart="672dp"
+        android:layout_marginStart="664dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.955"
+        app:layout_constraintVertical_bias="0.925"
         app:srcCompat="@drawable/ic_home" />
 
 
