@@ -21,6 +21,8 @@ public class LandingPageActivity extends AppCompatActivity {
     private Button LogoutButton;
 
     private Button TransactionList;
+    private Button OverviewButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,8 @@ public class LandingPageActivity extends AppCompatActivity {
         LogoutButton = findViewById(R.id.log_out_warning);
 
         TransactionList = findViewById(R.id.toTransactionPage);
+
+        OverviewButton = findViewById(R.id.overview_button);
 
         AddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,7 +56,7 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         });
 
-        TransactionList.setOnClickListener(new View.OnClickListener() {
+        OverviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LandingPageActivity.this, GraphOverview.class);
