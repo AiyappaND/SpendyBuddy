@@ -189,7 +189,7 @@
         android:layout_height="137dp"
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/log_out_warming"
+        app:layout_constraintEnd_toStartOf="@+id/log_out_warning"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@+id/Expensebutton"
@@ -200,7 +200,7 @@
         android:focusable="true" />
 
     <Button
-        android:id="@+id/log_out_warming"
+        android:id="@+id/log_out_warning"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/log_out"

@@ -17,6 +17,9 @@ public class LandingPageActivity extends AppCompatActivity {
     private FloatingActionButton AddExpense;
     private FloatingActionButton AddIncome;
 
+    private FloatingActionButton FABLogout;
+    private Button LogoutButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +28,9 @@ public class LandingPageActivity extends AppCompatActivity {
 
         AddExpense = findViewById(R.id.add_Expense);
         AddIncome = findViewById(R.id.add_Income);
+
+        FABLogout = findViewById(R.id.log_out);
+        LogoutButton = findViewById(R.id.log_out_warning);
 
 
         AddExpense.setOnClickListener(new View.OnClickListener() {
@@ -43,11 +49,24 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         });
 
+        FABLogout.setOnClickListener(new View.OnClickListener()  {
+            @Override
+            public void onClick(View v) {
+               logoutWithWarning();
+            }
+        });
+
+        LogoutButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                logoutWithWarning();
+            }
+        });
+
 
     }
 
-    @Override
-    public void onBackPressed() {
+    public void logoutWithWarning() {
         new AlertDialog.Builder(this)
                 .setTitle("Confirm Logout")
                 .setMessage("Do you really want to logout?")
@@ -60,6 +79,11 @@ public class LandingPageActivity extends AppCompatActivity {
                     startActivity(intent);
                 })
                 .setNegativeButton(android.R.string.no, null).show();
+    }
+
+    @Override
+    public void onBackPressed() {
+       logoutWithWarning();
     }
 
 }
