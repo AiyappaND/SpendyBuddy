@@ -16,7 +16,6 @@
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false" />
-
         <activity
             android:name=".Transaction"
             android:exported="true"
@@ -27,6 +26,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".data.Transaction.OverviewTransactionActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
