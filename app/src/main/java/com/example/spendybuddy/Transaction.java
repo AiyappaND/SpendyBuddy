@@ -86,6 +86,7 @@ public class Transaction extends AppCompatActivity {
         });
 
         // Code for taking picture
+        // Reference: https://www.youtube.com/watch?v=LpL9akTG4hI
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -206,6 +207,7 @@ public class Transaction extends AppCompatActivity {
         });
     }
 
+    // For the image
     private void openCamera() {
         ContentValues values = new ContentValues();
         values.put(MediaStore. Images.Media.TITLE, "New Pict");
