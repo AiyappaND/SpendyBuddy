@@ -6,14 +6,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.spendybuddy.databinding.SignupBinding;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import org.eazegraph.lib.charts.PieChart;
 import org.eazegraph.lib.models.PieModel;
 
 public class GraphOverview extends AppCompatActivity {
 
-    TextView tv1, tv2, tv3, tv4;
+//    TextView tv1, tv2, tv3, tv4;
     PieChart pieChart;
-
+    private DatabaseReference mDatabase;
 
 
     @Override
@@ -21,12 +25,14 @@ public class GraphOverview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph_overview);
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
         pieChart = findViewById(R.id.piechart);
-//        tv1 = findViewById(R.id.tv_clothes);
-//        tv2 = findViewById(R.id.graph_tv2);
-//        tv3 = findViewById(R.id.graph_tv3);
-//        tv4 = findViewById(R.id.graph_tv4);
-        
+
+    }
+
+    public void populateGraph(){
+
         String color_one= "#ef3c42";
         String color_two= "#f25e40";
         String color_three= "#f2823a";
@@ -45,68 +51,66 @@ public class GraphOverview extends AppCompatActivity {
         String color_sixteen= "#4592ca";
         String color_seventeen= "#3f77c4";
 
-        // todo
-        // fetch all amounts, and then calculate amounts
-        // then
-        // tv.setText(Integer.toString(amount))
-         pieChart.addPieSlice(
-            new PieModel(
-                "Clothes",
-                Integer.parseInt("8"),
-                Color.parseColor(color_one)));
-        pieChart.addPieSlice(
-            new PieModel(
-                "2",
-                Integer.parseInt("8"),
-                Color.parseColor(color_two)));
-        pieChart.addPieSlice(
-            new PieModel(
-                "3",
-                Integer.parseInt("8"),
-                Color.parseColor(color_three)));
-        pieChart.addPieSlice(
-            new PieModel(
-                "4",
-                Integer.parseInt("8"),
-                Color.parseColor(color_four)));
+
+
         pieChart.addPieSlice(
                 new PieModel(
-                        "4",
+                        "Clothes",
+                        Integer.parseInt("8"),
+                        Color.parseColor(color_one)));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Eating out",
+                        Integer.parseInt("8"),
+                        Color.parseColor(color_two)));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Entertainment",
+                        Integer.parseInt("8"),
+                        Color.parseColor(color_three)));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Gas",
+                        Integer.parseInt("8"),
+                        Color.parseColor(color_four)));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Groceries",
                         Integer.parseInt("8"),
                         Color.parseColor(color_five)));
         pieChart.addPieSlice(
                 new PieModel(
-                        "4",
+                        "Holidays",
                         Integer.parseInt("8"),
                         Color.parseColor(color_six)));
         pieChart.addPieSlice(
                 new PieModel(
-                        "4",
+                        "Investments",
                         Integer.parseInt("8"),
                         Color.parseColor(color_seven)));
         pieChart.addPieSlice(
                 new PieModel(
-                        "4",
+                        "Kids",
                         Integer.parseInt("8"),
                         Color.parseColor(color_eight)));
         pieChart.addPieSlice(
                 new PieModel(
-                        "4",
+                        "Shopping",
                         Integer.parseInt("8"),
                         Color.parseColor(color_nine)));
         pieChart.addPieSlice(
                 new PieModel(
-                        "4",
+                        "Sports",
                         Integer.parseInt("8"),
                         Color.parseColor(color_ten)));
         pieChart.addPieSlice(
                 new PieModel(
-                        "4",
+                        "Travel",
                         Integer.parseInt("8"),
                         Color.parseColor(color_eleven)));
         pieChart.addPieSlice(
                 new PieModel(
-                        "4",
+                        "Other",
                         Integer.parseInt("8"),
                         Color.parseColor(color_twelve)));
 
