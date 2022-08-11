@@ -172,6 +172,8 @@
         android:hint="@string/enter_note_hint"
         android:imeOptions="actionDone"
         android:inputType="text"
+        android:textSize="25dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
