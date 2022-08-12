@@ -22,13 +22,14 @@ public class LandingPageActivity extends AppCompatActivity {
 
     private Button TransactionList;
     private Button OverviewButton;
+    String username;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing_page);
-
+        username = getIntent().getExtras().getString("username");
 
         AddExpense = findViewById(R.id.add_Expense);
         AddIncome = findViewById(R.id.add_Income);
@@ -60,6 +61,7 @@ public class LandingPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LandingPageActivity.this, GraphOverview.class);
+                intent.putExtra("username", username);
                 startActivity(intent);
             }
         });

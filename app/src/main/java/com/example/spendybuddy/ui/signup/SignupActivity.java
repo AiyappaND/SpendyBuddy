@@ -71,6 +71,8 @@ public class SignupActivity extends AppCompatActivity {
                 else {
                     mDatabase.child("users_auth").child(username).get().addOnCompleteListener(task -> {
                         if (task.isSuccessful()) {
+                            try{
+
                             HashMap<String, String> result = (HashMap<String, String>) task.getResult().getValue();
                             if (result.get("userId") != null) {
                                 Toast.makeText(getApplicationContext(), "Username exists, choose another username" ,
@@ -78,6 +80,10 @@ public class SignupActivity extends AppCompatActivity {
                             }
                             else {
                                 createNewUser(username, password, fullName, email);
+                            }
+                            }
+                            catch(Exception e) {
+                                System.out.println(e);
                             }
                         }
                         else {

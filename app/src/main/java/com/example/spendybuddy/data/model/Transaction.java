@@ -38,6 +38,7 @@ public class Transaction {
         this.description = description;
     }
 
+    // for firebase fetches
     public Transaction() {
     }
 
@@ -85,5 +86,13 @@ public class Transaction {
         Date = date;
         this.image = image;
         this.description = description;
+    }
+
+    public Transaction(double amount, String id, String account_id, TransactionType transactionType, String date) {
+        this.id = id;
+        this.amount = amount;
+        this.account_id = account_id;
+        this.transactionType = transactionType;
+        Date = date;
     }
 }
