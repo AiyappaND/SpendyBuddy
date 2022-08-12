@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.spendybuddy.data.Transaction.OverviewTransactionActivity;
 import com.example.spendybuddy.ui.login.LoginActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -81,6 +82,15 @@ public class LandingPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LandingPageActivity.this, GraphOverview.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
+            }
+        });
+
+        TransactionList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LandingPageActivity.this, OverviewTransactionActivity.class);
                 intent.putExtra("username", username);
                 startActivity(intent);
             }
