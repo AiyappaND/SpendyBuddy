@@ -208,7 +208,7 @@
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/Incomebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"

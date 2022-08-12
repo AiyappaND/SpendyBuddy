@@ -20,6 +20,8 @@ public class LandingPageActivity extends AppCompatActivity {
     private FloatingActionButton FABLogout;
     private Button LogoutButton;
 
+    private Button AddExpenseButton;
+    private Button AddIncomeButton;
     private Button TransactionList;
     private Button OverviewButton;
     String username;
@@ -32,7 +34,9 @@ public class LandingPageActivity extends AppCompatActivity {
         username = getIntent().getExtras().getString("username");
 
         AddExpense = findViewById(R.id.add_Expense);
+        AddExpenseButton = findViewById(R.id.Expensebutton);
         AddIncome = findViewById(R.id.add_Income);
+        AddIncomeButton =findViewById(R.id.Incomebutton);
 
         FABLogout = findViewById(R.id.log_out);
         LogoutButton = findViewById(R.id.log_out_warning);
@@ -53,6 +57,22 @@ public class LandingPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LandingPageActivity.this, IncomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        AddIncomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LandingPageActivity.this, IncomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        AddExpenseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LandingPageActivity.this, Transaction.class);
                 startActivity(intent);
             }
         });
