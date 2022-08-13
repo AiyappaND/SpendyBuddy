@@ -1,6 +1,4 @@
-package com.example.spendybuddy;
-
-import static java.lang.Boolean.TRUE;
+package com.example.spendybuddy.Transaction_be;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,12 +12,12 @@ import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -27,74 +25,72 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.spendybuddy.R;
+import com.example.spendybuddy.data.model.Transaction;
 import com.example.spendybuddy.data.model.TransactionType;
 import com.example.spendybuddy.utils.RTDB;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.sql.Blob;
 import java.util.Calendar;
 
-public class Transaction extends AppCompatActivity {
-
+public class TransactionEditActivity extends AppCompatActivity {
+    Transaction m;
+    RTDB db ;
+    TextView amount;
     private DatePickerDialog datePickerDialog;
-    private Button dateButton;
-    private EditText dollarAmount;
-    private EditText note;
-    private boolean terminateThread = false;
+    Button dateButton;
+    EditText note;
+    Spinner fromBucket;
+    Spinner categorySpinner;
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
     Button mCaptureBtn;
-    ImageView mImageView;
-    Button submitButton;
     Uri image_uri;
-    RTDB db;
-    com.example.spendybuddy.data.model.Transaction m = new com.example.spendybuddy.data.model.Transaction();
+    ImageView mImageView;
+    Uri location_uri;
+    Button submitButton;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transaction);
+        setContentView(R.layout.activity_transaction_edit);
+        m = (Transaction) getIntent().getSerializableExtra("transaction");
+        db = new RTDB(m.getAccount_id());
         initDatePicker();
+        String date=  m.getDate();
+        String description = m.getDescription();
+        TransactionType type = m.getTransactionType();
+        Double amountDouble = m.getAmount();
+
+        amount = findViewById(R.id.amount_ET);
+        amount.setText(String.valueOf(amountDouble));
         dateButton = findViewById(R.id.datePickerButton);
-        dateButton.setText(getTodaysDate());
-
-        dollarAmount = (EditText) findViewById(R.id.amount_ET);
-        note = findViewById(R.id.note);
-
-        mImageView = findViewById(R.id.image_view);
-        mCaptureBtn = findViewById(R.id.capture_image_btn);
-
-
-        // This are for the bucket
-        Spinner categorySpinner = findViewById(R.id.categoryDropDown);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Transaction.this,
+        categorySpinner = findViewById(R.id.categoryDropDown);
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TransactionEditActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.categories));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(myAdapter);
-
-        // Where the money is from
-        Spinner fromSpinner = findViewById(R.id.fromBucket);
-        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(Transaction.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.cashFrom));
-        myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        fromSpinner.setAdapter(myAdapter2);
-
-        FloatingActionButton home = findViewById(R.id.home_button);
-        home.setOnClickListener(view -> {
-            Intent intent = new Intent(Transaction.this, LandingPageActivity.class);
-            startActivity(intent);
-
-        });
-
-        // Code for taking picture
-        // Reference: https://www.youtube.com/watch?v=LpL9akTG4hI
+        int spinnerpostion = myAdapter.getPosition(String.valueOf(type));
+        categorySpinner.setSelection(spinnerpostion);
+        note = findViewById(R.id.note);
+        note.setText(m.getDescription());
+        mCaptureBtn = findViewById(R.id.capture_image_btn);
+        mImageView = findViewById(R.id.image_view);
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,12 +113,15 @@ public class Transaction extends AppCompatActivity {
                 }
             }
         });
+       if(m.getImage() != null || !m.getImage().equals("")){
+            Glide.with(this).load(m.getImage()).into(mImageView);
+       }
         submitButton = findViewById(R.id.Submit_button);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Double newAmount = Double.valueOf(String.valueOf(dollarAmount.getText()));
+                Double newAmount = Double.valueOf(String.valueOf(amount.getText()));
                 m.setAmount(newAmount);
                 String newDescription = String.valueOf(note.getText());
                 m.setDescription(newDescription);
@@ -141,27 +140,27 @@ public class Transaction extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
     private void uploadToFirebase(Uri uri){
         final StorageReference filref = storageReference.child(System.currentTimeMillis()+"."+getFileExtension(uri));
         filref.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                filref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-                    @Override
-                    public void onSuccess(Uri uri) {
+         @Override
+         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+             filref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                 @Override
+                 public void onSuccess(Uri uri) {
+                     System.out.println(1);
+                     location_uri = uri;
 
-                        m.setImage(String.valueOf(uri));
-                        db.updateTransaction(m.getId(), m);
-                    }
-                });
-            }
-        });}
+                     m.setImage(String.valueOf(location_uri));
+                     db.updateTransaction(m.getId(), m);
+                 }
+             });
+         }
+     }
+
+        );
+    }
 
     private String getFileExtension(Uri mUri){
 
@@ -170,19 +169,6 @@ public class Transaction extends AppCompatActivity {
         return mime.getExtensionFromMimeType(cr.getType(mUri));
 
     }
-
-
-
-    private String getTodaysDate()
-    {
-        Calendar cal = Calendar.getInstance();
-        int year = cal.get(Calendar.YEAR);
-        int month = cal.get(Calendar.MONTH);
-        month = month + 1;
-        int day = cal.get(Calendar.DAY_OF_MONTH);
-        return makeDateString(day, month, year);
-    }
-
     private void initDatePicker()
     {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener()
@@ -205,12 +191,10 @@ public class Transaction extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, style, dateSetListener, year, month, day);
         datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
     }
-
     private String makeDateString(int day, int month, int year)
     {
         return getMonthFormat(month) + " " + day + " " + year;
     }
-
     private String getMonthFormat(int month)
     {
         if(month == 1)
@@ -241,27 +225,9 @@ public class Transaction extends AppCompatActivity {
         //default should never happen
         return "JAN";
     }
-
-
     public void openDatePicker(View view)
     {
         datePickerDialog.show();
-    }
-
-    // To do: Come back to this one. Can't get the dollar sign to work yet
-    public void changeDollarFormat(View view) {
-
-        dollarAmount.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable s) {
-                dollarAmount.setText("$" + dollarAmount.getText().toString());
-            }
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-        });
     }
 
     // For the image
@@ -299,6 +265,5 @@ public class Transaction extends AppCompatActivity {
             mImageView.setImageURI(image_uri);
         }
     }
-
 
 }

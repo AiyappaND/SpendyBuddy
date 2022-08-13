@@ -62,16 +62,17 @@
             android:textColor="#311B92"
             android:textSize="20sp" />
 
-        <ImageView
+        <ImageButton
             android:id="@+id/edit_button"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginStart="325dp"
+            android:backgroundTint="#F6F4F4"
             android:gravity="end"
             android:text="Edit"
             android:textColor="#311B92"
             android:textSize="20sp"
-            app:srcCompat="@drawable/ic_edit"/>
+            app:srcCompat="@drawable/ic_edit" />
 
     </androidx.cardview.widget.CardView>
 

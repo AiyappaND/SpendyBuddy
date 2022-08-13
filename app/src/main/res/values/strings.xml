@@ -22,7 +22,7 @@
     <string-array name="categories">
         <item>Please select the category</item>
         <item>Clothes</item>
-        <item>Eating Out</item>
+        <item>EatingOut</item>
         <item>Entertainment</item>
         <item>Gas</item>
         <item>Gifts</item>

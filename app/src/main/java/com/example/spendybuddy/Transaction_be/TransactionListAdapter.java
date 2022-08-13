@@ -1,21 +1,18 @@
-package com.example.spendybuddy.data.Transaction;
+package com.example.spendybuddy.Transaction_be;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spendybuddy.R;
 import com.example.spendybuddy.data.model.Transaction;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -70,7 +67,9 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
             this.editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
+                    Intent i = new Intent(context,TransactionEditActivity.class);
+                    i.putExtra("transaction" , m);
+                    context.startActivity(i);
                 }
             });
 
