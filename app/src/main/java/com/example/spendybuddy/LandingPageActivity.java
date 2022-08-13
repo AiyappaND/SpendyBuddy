@@ -66,6 +66,7 @@ public class LandingPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(LandingPageActivity.this, TransactionActivity.class);
+                intent.putExtra("username", username);
                 startActivity(intent);
             }
         });
