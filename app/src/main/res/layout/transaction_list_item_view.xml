@@ -6,75 +6,108 @@
     android:layout_height="wrap_content">
 
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="409dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardView"
+        android:layout_width="402dp"
+        android:layout_height="77dp"
         android:elevation="@dimen/cardview_default_elevation"
-        app:cardBackgroundColor="@color/rowGreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/category_view"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:text="Gas"
-                android:textColor="#311B92"
-                android:textSize="25sp" />
+        app:cardBackgroundColor="#eeeeee"
+        app:cardCornerRadius="16dp"
+        app:contentPadding="8dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="8dp">
 
 
-            <TextView
-                android:id="@+id/time_view"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:text="Aug 11, 2022"
-                android:textSize="15sp"
-                android:textStyle="italic"
-                android:textColor="#311B92"/>
+        <TextView
+            android:id="@+id/category_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="153dp"
+            android:text="Gas"
+            android:textColor="#311B92"
+            android:textSize="25sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-            <TextView
-                android:id="@+id/description_view"
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:text="Went to movit with friends"
-                android:textStyle="italic"
-                android:textSize="15sp"
-                android:textColor="#311B92"/>
+        <TextView
+            android:id="@+id/time_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aug 11, 2022"
+            android:textColor="#311B92"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/category_view"
+            app:layout_constraintTop_toBottomOf="@+id/category_view"
+            app:layout_constraintVertical_bias="0.0" />
 
-        </LinearLayout>
+        <TextView
+            android:id="@+id/description_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Went to movit with friends"
+            android:textColor="#311B92"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.947" />
 
         <TextView
             android:id="@+id/amount_text"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="250dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:gravity="end"
             android:text="$50000"
             android:textColor="#311B92"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.582"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.553" />
 
         <ImageButton
             android:id="@+id/edit_button"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="325dp"
-            android:backgroundTint="#F6F4F4"
+            android:layout_width="50dp"
+            android:layout_height="49dp"
+            android:backgroundTint="#00F6F4F4"
             android:gravity="end"
             android:text="Edit"
             android:textColor="#311B92"
             android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/delete_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.284"
+            app:layout_constraintStart_toEndOf="@+id/amount_text"
+            app:layout_constraintTop_toTopOf="@+id/delete_button"
             app:srcCompat="@drawable/ic_edit" />
 
-    </androidx.cardview.widget.CardView>
+        <ImageButton
+            android:id="@+id/delete_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#80F6F4F4"
+            android:gravity="end"
+            android:text="Delete"
+            android:textColor="#311B92"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/edit_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@android:drawable/ic_delete" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

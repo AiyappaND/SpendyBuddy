@@ -19,11 +19,12 @@ import java.util.List;
 public class TransactionListAdapter extends RecyclerView.Adapter<TransactionListAdapter.TransactionListHolder> {
     Context context;
     List<Transaction> record;
+    String username;
 
-
-    public TransactionListAdapter(Context context , List<Transaction> record){
+    public TransactionListAdapter(Context context , List<Transaction> record, String username){
         this.context = context;
         this.record = record;
+        this.username = username;
     }
 
     @NonNull
@@ -37,6 +38,8 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
     public void onBindViewHolder(@NonNull TransactionListHolder holder, int position) {
         holder.set(record.get(position));
     }
+
+
 
     @Override
     public int getItemCount() {
@@ -69,6 +72,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
                 public void onClick(View view) {
                     Intent i = new Intent(context,TransactionEditActivity.class);
                     i.putExtra("transaction" , m);
+                    i.putExtra("username", username);
                     context.startActivity(i);
                 }
             });

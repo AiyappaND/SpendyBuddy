@@ -38,11 +38,10 @@ public class OverviewTransactionActivity extends AppCompatActivity {
         transactionListRecycler = findViewById(R.id.transaction_list_recycler_view);
         record = new ArrayList<>();
         db = FirebaseDatabase.getInstance().getReference("transactions");
-        adapter = new TransactionListAdapter(this,record);
+        adapter = new TransactionListAdapter(this,record, user_id);
         transactionListRecycler.setLayoutManager(new LinearLayoutManager(this));
         transactionListRecycler.setAdapter(adapter);
         transactionListRecycler.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
-
         Query query = db.orderByChild("account_id").equalTo(user_id);
         query.addValueEventListener(new ValueEventListener() {
             @Override

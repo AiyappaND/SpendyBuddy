@@ -17,6 +17,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.health.SystemHealthManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -37,8 +38,11 @@ import com.example.spendybuddy.data.model.Transaction;
 import com.example.spendybuddy.data.model.TransactionType;
 import com.example.spendybuddy.utils.RTDB;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -50,7 +54,8 @@ import java.util.Calendar;
 
 public class TransactionEditActivity extends AppCompatActivity {
     Transaction m;
-    RTDB db ;
+    DatabaseReference db ;
+
     TextView amount;
     private DatePickerDialog datePickerDialog;
     Button dateButton;
@@ -64,31 +69,50 @@ public class TransactionEditActivity extends AppCompatActivity {
     ImageView mImageView;
     Uri location_uri;
     Button submitButton;
+    String username;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null){
+            username = extras.getString("username");
+        }
         setContentView(R.layout.activity_transaction_edit);
         m = (Transaction) getIntent().getSerializableExtra("transaction");
-        db = new RTDB(m.getAccount_id());
+        System.out.println("HERE");
+        System.out.println(m);
+        System.out.println(m.getId()+ "," + m.getAmount()+ "," + m.getTransactionType()+ "," + m.getDate()+ "," + m.getDescription()+ "," + m.getAccount_id());
+        db = FirebaseDatabase.getInstance().getReference("transactions");
         initDatePicker();
-        String date=  m.getDate();
-        String description = m.getDescription();
+        if(m.getDate() != null);{
+            String date=  m.getDate();
+
+        }
+        if(m.getDescription() != null){
+            String date=  m.getDescription();
+        }
+        else{
+            String date = "";
+        }
         TransactionType type = m.getTransactionType();
         Double amountDouble = m.getAmount();
-
-        amount = findViewById(R.id.amount_ET);
-        amount.setText(String.valueOf(amountDouble));
-        dateButton = findViewById(R.id.datePickerButton);
-        categorySpinner = findViewById(R.id.categoryDropDown);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TransactionEditActivity.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.categories));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categorySpinner.setAdapter(myAdapter);
-        int spinnerpostion = myAdapter.getPosition(String.valueOf(type));
-        categorySpinner.setSelection(spinnerpostion);
-        note = findViewById(R.id.note);
-        note.setText(m.getDescription());
+        submitButton = findViewById(R.id.Submit_button);
+//        amount = findViewById(R.id.amount_ET);
+////        amount.setText(String.valueOf(amountDouble));
+//        dateButton = findViewById(R.id.datePickerButton);
+//        categorySpinner = findViewById(R.id.categoryDropDown);
+//
+////        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TransactionEditActivity.this,
+////                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.categories));
+////        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+////        categorySpinner.setAdapter(myAdapter);
+////        String.valueOf(categorySpinner.getSelectedItem());
+//
+////        int spinnerpostion = myAdapter.getPosition(String.valueOf(type));
+////        categorySpinner.setSelection(spinnerpostion);
+//        note = findViewById(R.id.note);
+//        note.setText(m.getDescription());
         mCaptureBtn = findViewById(R.id.capture_image_btn);
         mImageView = findViewById(R.id.image_view);
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +140,7 @@ public class TransactionEditActivity extends AppCompatActivity {
        if(m.getImage() != null || !m.getImage().equals("")){
             Glide.with(this).load(m.getImage()).into(mImageView);
        }
-        submitButton = findViewById(R.id.Submit_button);
+
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,7 +158,7 @@ public class TransactionEditActivity extends AppCompatActivity {
                     uploadToFirebase(image_uri);
 
                 }else {
-                    db.updateTransaction(m.getId(), m);
+                    updateTransaction(db, m.getId(), m);
                 }
                 finish();
             }
@@ -153,7 +177,7 @@ public class TransactionEditActivity extends AppCompatActivity {
                      location_uri = uri;
 
                      m.setImage(String.valueOf(location_uri));
-                     db.updateTransaction(m.getId(), m);
+                     updateTransaction(db, m.getId(), m);
                  }
              });
          }
@@ -265,5 +289,27 @@ public class TransactionEditActivity extends AppCompatActivity {
             mImageView.setImageURI(image_uri);
         }
     }
+
+    public void updateTransaction(DatabaseReference dbr, String transactionId, Transaction transaction){
+        DatabaseReference ref = dbr.child(transactionId);
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                dataSnapshot.getRef().setValue(transaction).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        System.out.println("Updated transaction " + transactionId);
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Error: Failed to update transaction");
+            }
+        });
+    }
+
 
 }
