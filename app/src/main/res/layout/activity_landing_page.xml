@@ -26,34 +26,34 @@
     <TextView
         android:id="@+id/expense_per_month"
         style="@style/TextStyle"
-        android:layout_width="265dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="272dp"
+        android:layout_height="42dp"
         android:gravity="center"
         android:inputType="numberDecimal"
-        android:text="Total Expense of the Month:"
+        android:text="Expenses This Month:"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/welcomeTV"
-        app:layout_constraintVertical_bias="0.116" />
+        app:layout_constraintTop_toBottomOf="@+id/welcomeTV"
+        app:layout_constraintVertical_bias="0.018" />
 
-    <EditText
+    <TextView
         android:id="@+id/expense_amount_Monthly"
         android:layout_width="116dp"
         android:layout_height="48dp"
-        android:layout_marginStart="12dp"
         android:background="@null"
         android:gravity="center"
-        android:hint="$0"
         android:minHeight="48dp"
+        android:text="$0"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/expense_per_month"
-        app:layout_constraintTop_toTopOf="@+id/welcomeTV"
-        app:layout_constraintVertical_bias="0.117" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expense_per_month"
+        app:layout_constraintVertical_bias="0.028" />
 
     <Button
         android:id="@+id/toCategory"
@@ -66,8 +66,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/toUserProfile"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_amount_Monthly"
+        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/toUserProfile"
@@ -80,8 +80,8 @@
         app:layout_constraintEnd_toStartOf="@+id/toCategory"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/welcomeTV"
-        app:layout_constraintVertical_bias="0.262" />
+        app:layout_constraintTop_toBottomOf="@+id/expense_amount_Monthly"
+        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/toTransactionPage"
@@ -94,8 +94,8 @@
         app:layout_constraintEnd_toStartOf="@+id/overview_button"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/welcomeTV"
-        app:layout_constraintVertical_bias="0.441" />
+        app:layout_constraintTop_toBottomOf="@+id/toUserProfile"
+        app:layout_constraintVertical_bias="0.073" />
 
     <Button
         android:id="@+id/overview_button"
@@ -108,8 +108,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/toTransactionPage"
-        app:layout_constraintTop_toTopOf="@+id/welcomeTV"
-        app:layout_constraintVertical_bias="0.441" />
+        app:layout_constraintTop_toBottomOf="@+id/toCategory"
+        app:layout_constraintVertical_bias="0.073" />
 
     <Button
         android:id="@+id/log_out_warning"
@@ -119,10 +119,10 @@
         android:text="@string/log_out"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.157"
         app:layout_constraintStart_toEndOf="@+id/log_out"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintTop_toTopOf="@+id/Expensebutton"
+        app:layout_constraintVertical_bias="0.003" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/log_out"
@@ -132,10 +132,10 @@
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintHorizontal_bias="0.689"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.686"
+        app:layout_constraintTop_toTopOf="@+id/add_Expense"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_logout"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
@@ -149,8 +149,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/add_Expense"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.68" />
+        app:layout_constraintTop_toBottomOf="@+id/toTransactionPage"
+        app:layout_constraintVertical_bias="0.24" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_Expense"
@@ -159,10 +159,10 @@
         android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
+        app:layout_constraintHorizontal_bias="0.098"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/welcomeTV"
-        app:layout_constraintVertical_bias="0.686"
+        app:layout_constraintTop_toBottomOf="@+id/toTransactionPage"
+        app:layout_constraintVertical_bias="0.229"
         app:srcCompat="@drawable/ic_add"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
