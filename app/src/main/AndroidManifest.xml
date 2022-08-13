@@ -47,17 +47,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".data.Transaction.OverviewTransactionActivity"
+            android:name=".Transaction_be.OverviewTransactionActivity"
             android:exported="true" />
         <activity
             android:name=".ui.signup.SignupActivity"
             android:exported="false" />
         <activity
             android:name=".LandingPageActivity"
-            android:exported="false"></activity>
-        <activity
-            android:name=".Transaction_be.OverviewTransactionActivity"
-            android:exported="true" />
             android:exported="false" />
         <receiver android:name=".ui.login.NotificationReceiver" />
     </application>
