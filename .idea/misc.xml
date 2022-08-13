@@ -7,20 +7,16 @@
         <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.177734375" />
         <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout-w936dp/activity_login.xml" value="0.1640625" />
         <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout/activity_delete_transaction.xml" value="0.2" />
-        <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout/activity_graph_overview.xml" value="0.3" />
-        <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout/activity_income.xml" value="0.16296296296296298" />
-        <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout/activity_landing_page.xml" value="0.2" />
+        <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout/activity_graph_overview.xml" value="0.25" />
+        <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout/activity_landing_page.xml" value="0.23385416666666667" />
         <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout/activity_transaction.xml" value="0.21875" />
-        <entry key="..\:/Users/nolan/Grad/CS5520/SpendyBuddy/app/src/main/res/layout/signup.xml" value="0.16296296296296298" />
         <entry key="app/src/main/res/drawable-anydpi/ic_Calander.xml" value="0.139" />
-        <entry key="app/src/main/res/drawable/gradient_bg.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_plus.xml" value="0.309" />
         <entry key="app/src/main/res/drawable/round_button.xml" value="0.328" />
         <entry key="app/src/main/res/layout-land/activity_transaction.xml" value="0.33" />
-        <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout-w1240dp/activity_login.xml" value="0.345703125" />
         <entry key="app/src/main/res/layout-w936dp/activity_login.xml" value="0.241796875" />
-        <entry key="app/src/main/res/layout/activity_delete_transaction.xml" value="0.3223958333333333" />
-        <entry key="app/src/main/res/layout/activity_graph_overview.xml" value="0.3223958333333333" />
         <entry key="app/src/main/res/layout/activity_income.xml" value="0.2324074074074074" />
         <entry key="app/src/main/res/layout/activity_landing_page.xml" value="0.2928512573242188" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.3223958333333333" />
