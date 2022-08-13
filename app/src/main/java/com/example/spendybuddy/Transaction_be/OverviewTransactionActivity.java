@@ -22,7 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class OverviewTransactionActivity extends AppCompatActivity {
-    String user_id = "Aiyappa";
+    String user_id;
     DatabaseReference db;
     RecyclerView transactionListRecycler;
     List<Transaction> record;
@@ -33,7 +33,7 @@ public class OverviewTransactionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_overview_transaction);
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            user_id = extras.getString("user_id");
+            user_id = extras.getString("username");
         }
         transactionListRecycler = findViewById(R.id.transaction_list_recycler_view);
         record = new ArrayList<>();
