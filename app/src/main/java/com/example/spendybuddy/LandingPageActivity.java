@@ -53,7 +53,7 @@ public class LandingPageActivity extends AppCompatActivity {
         AddExpense.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LandingPageActivity.this, Transaction.class);
+                Intent intent = new Intent(LandingPageActivity.this, TransactionActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,7 +77,7 @@ public class LandingPageActivity extends AppCompatActivity {
         AddExpenseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LandingPageActivity.this, Transaction.class);
+                Intent intent = new Intent(LandingPageActivity.this, TransactionActivity.class);
                 startActivity(intent);
             }
         });
