@@ -1,7 +1,5 @@
 package com.example.spendybuddy;
 
-import static java.lang.Boolean.TRUE;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +15,7 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.health.SystemHealthManager;
 import android.provider.MediaStore;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -31,17 +30,23 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+
+import com.example.spendybuddy.data.model.Transaction;
 import com.example.spendybuddy.data.model.TransactionType;
 import com.example.spendybuddy.utils.RTDB;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
+import java.util.HashMap;
 
-public class Transaction extends AppCompatActivity {
+public class TransactionActivity extends AppCompatActivity {
+    public String username;
 
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
@@ -55,8 +60,10 @@ public class Transaction extends AppCompatActivity {
     Button submitButton;
     Uri image_uri;
     RTDB db;
-    com.example.spendybuddy.data.model.Transaction m = new com.example.spendybuddy.data.model.Transaction();
+    Transaction transaction;
+    DatabaseReference addDb;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,31 +71,36 @@ public class Transaction extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
+        addDb = FirebaseDatabase.getInstance().getReference("transactions");
+
+        username = getIntent().getExtras().getString("username");
 
         dollarAmount = (EditText) findViewById(R.id.amount_ET);
         note = findViewById(R.id.note);
 
         mImageView = findViewById(R.id.image_view);
         mCaptureBtn = findViewById(R.id.capture_image_btn);
+        submitButton = findViewById(R.id.Submit_button);
+
 
 
         // This are for the bucket
         Spinner categorySpinner = findViewById(R.id.categoryDropDown);
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(Transaction.this,
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TransactionActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.categories));
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         categorySpinner.setAdapter(myAdapter);
 
         // Where the money is from
         Spinner fromSpinner = findViewById(R.id.fromBucket);
-        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(Transaction.this,
+        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(TransactionActivity.this,
                 android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.cashFrom));
         myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         fromSpinner.setAdapter(myAdapter2);
 
         FloatingActionButton home = findViewById(R.id.home_button);
         home.setOnClickListener(view -> {
-            Intent intent = new Intent(Transaction.this, LandingPageActivity.class);
+            Intent intent = new Intent(TransactionActivity.this, LandingPageActivity.class);
             startActivity(intent);
 
         });
@@ -117,26 +129,36 @@ public class Transaction extends AppCompatActivity {
                 }
             }
         });
-        submitButton = findViewById(R.id.Submit_button);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
                 Double newAmount = Double.valueOf(String.valueOf(dollarAmount.getText()));
-                m.setAmount(newAmount);
                 String newDescription = String.valueOf(note.getText());
-                m.setDescription(newDescription);
                 String newType = String.valueOf(categorySpinner.getSelectedItem());
-                m.setTransactionType(TransactionType.valueOf(newType));
                 String newDate = String.valueOf(dateButton.getText());
-                m.setDate(newDate);
+
+
+                transaction = new Transaction(
+                     newAmount, username, TransactionType.valueOf(newType), newDate
+                );
+                if (newDescription.length() > 0){
+                    transaction.setDescription(newDescription);
+                }
+
+                System.out.println("HERE");
+                System.out.println(transaction);
+                System.out.println(transaction.getId()+ " " + transaction.getTransactionType()+ " " + transaction.getAccount_id()+ " " + transaction.getDate()+ " " + transaction.getDescription()+ " " + transaction.getAmount());
 
                 if(image_uri != null){
                     uploadToFirebase(image_uri);
 
-                }else {
-                    db.updateTransaction(m.getId(), m);
                 }
+//                    db.updateTransaction(m.getId(), m);
+
+                addDb.child(transaction.getId()).setValue(transaction);
+
                 finish();
             }
         });
@@ -156,8 +178,8 @@ public class Transaction extends AppCompatActivity {
                     @Override
                     public void onSuccess(Uri uri) {
 
-                        m.setImage(String.valueOf(uri));
-                        db.updateTransaction(m.getId(), m);
+                        transaction.setImage(String.valueOf(uri));
+                        db.updateTransaction(transaction.getId(), transaction);
                     }
                 });
             }

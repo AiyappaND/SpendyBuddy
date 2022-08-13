@@ -39,6 +39,15 @@ public class Transaction implements Serializable {
         this.description = description;
     }
 
+    public Transaction(double amount, String account_id, TransactionType transactionType, String date) {
+        this.id = UUID.randomUUID().toString();
+        this.amount = amount;
+        this.account_id = account_id;
+        this.transactionType = transactionType;
+        Date = date;
+        this.description = "";
+    }
+
     // for firebase fetches
     public Transaction() {
     }

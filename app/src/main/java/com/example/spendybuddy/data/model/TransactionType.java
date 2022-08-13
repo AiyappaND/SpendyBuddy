@@ -5,6 +5,7 @@ public enum TransactionType {
     EatingOut,
     Entertainment,
     Gas,
+    Gifts,
     Groceries,
     Holidays,
     Investments,
