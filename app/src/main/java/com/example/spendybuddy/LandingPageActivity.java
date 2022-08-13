@@ -27,6 +27,8 @@ public class LandingPageActivity extends AppCompatActivity {
     private Button OverviewButton;
     String username;
 
+    private Button UserProfileButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +43,8 @@ public class LandingPageActivity extends AppCompatActivity {
 
         FABLogout = findViewById(R.id.log_out);
         LogoutButton = findViewById(R.id.log_out_warning);
+
+        UserProfileButton = findViewById(R.id.toUserProfile);
 
         TransactionList = findViewById(R.id.toTransactionPage);
 
@@ -110,6 +114,12 @@ public class LandingPageActivity extends AppCompatActivity {
             }
         });
 
+        UserProfileButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                navigateToUserProfile();
+            }
+        });
 
     }
 
@@ -131,6 +141,15 @@ public class LandingPageActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
        logoutWithWarning();
+    }
+
+    public void navigateToUserProfile() {
+        Intent profileIntent = new Intent(getApplicationContext(),
+                UserProfile.class);
+        Intent intent = getIntent();
+        String username = intent.getStringExtra("username");
+        profileIntent.putExtra("username", username);
+        startActivity(profileIntent);
     }
 
 }
