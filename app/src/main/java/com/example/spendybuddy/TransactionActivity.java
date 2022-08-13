@@ -147,10 +147,6 @@ public class TransactionActivity extends AppCompatActivity {
                     transaction.setDescription(newDescription);
                 }
 
-                System.out.println("HERE");
-                System.out.println(transaction);
-                System.out.println(transaction.getId()+ " " + transaction.getTransactionType()+ " " + transaction.getAccount_id()+ " " + transaction.getDate()+ " " + transaction.getDescription()+ " " + transaction.getAmount());
-
                 if(image_uri != null){
                     uploadToFirebase(image_uri);
 
