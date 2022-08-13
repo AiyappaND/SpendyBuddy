@@ -22,6 +22,7 @@ public class RTDB {
     public HashMap<String, Transaction> values;
     public DatabaseReference db;
     public String username;
+    public double count;
     public RTDB(String username) {
         username = username;
         values = new HashMap<>();
@@ -29,9 +30,9 @@ public class RTDB {
     }
 //    for deleting transactions
     public RTDB() {
-        username = username;
         values = new HashMap<>();
         db = FirebaseDatabase.getInstance().getReference("transactions");
+        this.count = 0.0;
     }
 
     public void addTransaction(Transaction transaction){
@@ -55,6 +56,29 @@ public class RTDB {
                 System.out.println("Message canceled");
             }
         });
+
+
+    }
+
+    public double getTotalMonthlyExpenses() {
+        Query query = db.orderByChild("account_id").equalTo(username);
+        query.addValueEventListener(new ValueEventListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                count = 0.0;
+                for (DataSnapshot snap : snapshot.getChildren()) {
+                    Transaction t = snap.getValue(Transaction.class);
+                    count += t.getAmount();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Message canceled");
+            }
+        });
+        return count;
     }
 
     public void deleteTransaction(String transactionId){
