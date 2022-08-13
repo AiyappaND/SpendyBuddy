@@ -51,7 +51,6 @@ public class GraphOverview extends AppCompatActivity {
 
         db = FirebaseDatabase.getInstance().getReference("transactions");
 
-
         tv_clothes =  findViewById(R.id.graph_clothes);
         tv_eating =  findViewById(R.id.graph_eating_out);
         tv_entertainment =  findViewById(R.id.graph_entertainment);

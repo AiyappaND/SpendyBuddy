@@ -36,6 +36,8 @@ import com.example.spendybuddy.data.model.TransactionType;
 import com.example.spendybuddy.utils.RTDB;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -44,6 +46,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class TransactionActivity extends AppCompatActivity {
+    public String username;
 
     private DatePickerDialog datePickerDialog;
     private Button dateButton;
@@ -58,6 +61,7 @@ public class TransactionActivity extends AppCompatActivity {
     Uri image_uri;
     RTDB db;
     Transaction transaction;
+    DatabaseReference addDb;
     private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     @Override
@@ -67,6 +71,9 @@ public class TransactionActivity extends AppCompatActivity {
         initDatePicker();
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
+        addDb = FirebaseDatabase.getInstance().getReference("transactions");
+
+        username = getIntent().getExtras().getString("username");
 
         dollarAmount = (EditText) findViewById(R.id.amount_ET);
         note = findViewById(R.id.note);
@@ -125,20 +132,20 @@ public class TransactionActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transaction = new Transaction(
 
-                );
 
                 Double newAmount = Double.valueOf(String.valueOf(dollarAmount.getText()));
                 String newDescription = String.valueOf(note.getText());
                 String newType = String.valueOf(categorySpinner.getSelectedItem());
                 String newDate = String.valueOf(dateButton.getText());
 
-                transaction.setAmount(newAmount);
-                transaction.setDescription(newDescription);
-                transaction.setTransactionType(TransactionType.valueOf(newType));
-                transaction.setDate(newDate);
 
+                transaction = new Transaction(
+                     newAmount, username, TransactionType.valueOf(newType), newDate
+                );
+                if (newDescription.length() > 0){
+                    transaction.setDescription(newDescription);
+                }
 
                 System.out.println("HERE");
                 System.out.println(transaction);
@@ -149,8 +156,8 @@ public class TransactionActivity extends AppCompatActivity {
 
                 }
 //                    db.updateTransaction(m.getId(), m);
-                String id = transaction.getId();
-//                    db.addTransaction(new HashMap<String, Transaction>(id, transaction));
+
+                addDb.child(transaction.getId()).setValue(transaction);
 
                 finish();
             }

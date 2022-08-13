@@ -27,6 +27,9 @@ public class RTDB {
         db = FirebaseDatabase.getInstance().getReference("transactions");
     }
 
+    public void addTransaction(Transaction transaction){
+        db.setValue(transaction);
+    }
 
     public void fetchValues() {
         Query query = db.orderByChild("account_id").equalTo(username);
