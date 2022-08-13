@@ -39,7 +39,6 @@ public class LandingPageActivity extends AppCompatActivity {
         AddExpense = findViewById(R.id.add_Expense);
         AddExpenseButton = findViewById(R.id.Expensebutton);
 
-
         FABLogout = findViewById(R.id.log_out);
         LogoutButton = findViewById(R.id.log_out_warning);
 
@@ -56,8 +55,6 @@ public class LandingPageActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
 
         AddExpenseButton.setOnClickListener(new View.OnClickListener() {
             @Override
