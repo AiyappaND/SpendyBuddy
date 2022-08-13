@@ -18,7 +18,7 @@
         android:theme="@style/Theme.AppCompat.Light"
         tools:targetApi="31">
         <activity
-            android:name=".TransactionEditActivity"
+            android:name=".Transaction_be.TransactionEditActivity"
             android:exported="false" />
         <activity
             android:name=".DeleteTransaction"

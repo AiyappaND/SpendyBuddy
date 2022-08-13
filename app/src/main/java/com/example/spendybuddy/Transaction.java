@@ -10,6 +10,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -21,6 +22,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -29,7 +31,13 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.spendybuddy.data.model.TransactionType;
+import com.example.spendybuddy.utils.RTDB;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
 
@@ -44,11 +52,11 @@ public class Transaction extends AppCompatActivity {
     private static final int IMAGE_CAPTURE_CODE = 1001;
     Button mCaptureBtn;
     ImageView mImageView;
-
+    Button submitButton;
     Uri image_uri;
-
-
-
+    RTDB db;
+    com.example.spendybuddy.data.model.Transaction m = new com.example.spendybuddy.data.model.Transaction();
+    private StorageReference storageReference = FirebaseStorage.getInstance().getReference();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,11 +117,60 @@ public class Transaction extends AppCompatActivity {
                 }
             }
         });
+        submitButton = findViewById(R.id.Submit_button);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Double newAmount = Double.valueOf(String.valueOf(dollarAmount.getText()));
+                m.setAmount(newAmount);
+                String newDescription = String.valueOf(note.getText());
+                m.setDescription(newDescription);
+                String newType = String.valueOf(categorySpinner.getSelectedItem());
+                m.setTransactionType(TransactionType.valueOf(newType));
+                String newDate = String.valueOf(dateButton.getText());
+                m.setDate(newDate);
+
+                if(image_uri != null){
+                    uploadToFirebase(image_uri);
+
+                }else {
+                    db.updateTransaction(m.getId(), m);
+                }
+                finish();
+            }
+        });
+
+
 
 
 
 
     }
+    private void uploadToFirebase(Uri uri){
+        final StorageReference filref = storageReference.child(System.currentTimeMillis()+"."+getFileExtension(uri));
+        filref.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                filref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                    @Override
+                    public void onSuccess(Uri uri) {
+
+                        m.setImage(String.valueOf(uri));
+                        db.updateTransaction(m.getId(), m);
+                    }
+                });
+            }
+        });}
+
+    private String getFileExtension(Uri mUri){
+
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(mUri));
+
+    }
+
 
 
     private String getTodaysDate()

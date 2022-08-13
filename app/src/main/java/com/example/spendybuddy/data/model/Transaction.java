@@ -1,16 +1,17 @@
 package com.example.spendybuddy.data.model;
 
+import java.io.Serializable;
 import java.sql.Blob;
 import java.util.UUID;
 
-public class Transaction {
+public class Transaction implements Serializable {
     private String id;
     private double amount;
     private String account_id;
     private TransactionType transactionType;
     private String Date;
     private String description;
-    private Blob image;
+    private String imageUri;
 
     public double getAmount() {
         return amount;
@@ -70,21 +71,21 @@ public class Transaction {
         Date = date;
     }
 
-    public Blob getImage() {
-        return image;
+    public String getImage() {
+        return imageUri;
     }
 
-    public void setImage(Blob image) {
-        this.image = image;
+    public void setImage(String image) {
+        this.imageUri = image;
     }
 
-    public Transaction(double amount, String account_id, TransactionType transactionType, String date, Blob image,String description) {
+    public Transaction(double amount, String account_id, TransactionType transactionType, String date, String imageUri,String description) {
         this.id = UUID.randomUUID().toString();
         this.amount = amount;
         this.account_id = account_id;
         this.transactionType = transactionType;
         Date = date;
-        this.image = image;
+        this.imageUri = imageUri;
         this.description = description;
     }
 
