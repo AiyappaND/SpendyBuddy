@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.spendybuddy.R;
 import com.example.spendybuddy.data.model.Transaction;
+import com.example.spendybuddy.utils.RTDB;
 
 import java.util.List;
 
@@ -52,6 +53,10 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
         TextView descriptionView;
         TextView dateView;
         AppCompatImageButton editButton;
+        AppCompatImageButton deleteButton;
+        RTDB rtdb;
+
+
         public TransactionListHolder(@NonNull View itemView) {
             super(itemView);
             amountView = itemView.findViewById(R.id.amount_text);
@@ -59,14 +64,24 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
             descriptionView = itemView.findViewById(R.id.description_view);
             dateView = itemView.findViewById(R.id.time_view);
             editButton = itemView.findViewById(R.id.edit_button);
+            deleteButton = itemView.findViewById(R.id.delete_button);
+            this.rtdb = new RTDB();
 
         }
+
 
         void set(Transaction m){
             this.dateView.setText(m.getDate());
             this.descriptionView.setText(m.getDescription());
             this.amountView.setText(String.valueOf(m.getAmount()));
             this.categoryView.setText(m.getTransactionType().toString());
+
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    rtdb.deleteTransaction(m.getId());
+                }
+            });
             this.editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -78,5 +93,7 @@ public class TransactionListAdapter extends RecyclerView.Adapter<TransactionList
             });
 
         }
+
     }
+
 }

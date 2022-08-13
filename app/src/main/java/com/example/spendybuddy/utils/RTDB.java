@@ -1,6 +1,7 @@
 package com.example.spendybuddy.utils;
 
 import android.os.Build;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -22,6 +23,12 @@ public class RTDB {
     public DatabaseReference db;
     public String username;
     public RTDB(String username) {
+        username = username;
+        values = new HashMap<>();
+        db = FirebaseDatabase.getInstance().getReference("transactions");
+    }
+//    for deleting transactions
+    public RTDB() {
         username = username;
         values = new HashMap<>();
         db = FirebaseDatabase.getInstance().getReference("transactions");
@@ -59,6 +66,7 @@ public class RTDB {
                 dataSnapshot.getRef().removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
+                        String output = "Deleted transaction " + transactionId;
                         System.out.println("Deleted transaction " + transactionId);
                     }
                 });
