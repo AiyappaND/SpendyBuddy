@@ -151,6 +151,11 @@ public class TransactionActivity extends AppCompatActivity {
                     uploadToFirebase(image_uri);
 
                 }
+
+                // add an intents check here if you want to re-use this activity to
+                // edit data.
+                // if intent = edit, update value.
+                // if intent = add, add value.
 //                    db.updateTransaction(m.getId(), m);
 
                 addDb.child(transaction.getId()).setValue(transaction);
