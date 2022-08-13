@@ -56,32 +56,30 @@
         app:layout_constraintVertical_bias="0.028" />
 
     <Button
-        android:id="@+id/toCategory"
-        android:layout_width="105dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="88dp"
-        android:text="Category"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/toUserProfile"
-        app:layout_constraintTop_toBottomOf="@+id/expense_amount_Monthly"
-        app:layout_constraintVertical_bias="0.035" />
-
-    <Button
         android:id="@+id/toUserProfile"
         android:layout_width="105dp"
         android:layout_height="68dp"
         android:text="User Profile"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/toCategory"
+        app:layout_constraintEnd_toStartOf="@+id/overview_button"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/toTransactionPage"
         app:layout_constraintTop_toBottomOf="@+id/expense_amount_Monthly"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.186" />
+
+    <Button
+        android:id="@+id/overview_button"
+        android:layout_width="105dp"
+        android:layout_height="68dp"
+        android:text="Overview"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toUserProfile"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/toUserProfile"
+        app:layout_constraintTop_toTopOf="@+id/toUserProfile"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/toTransactionPage"
@@ -89,40 +87,12 @@
         android:layout_height="68dp"
         android:text="Transaction List"
         android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/overview_button"
+        app:layout_constraintBottom_toBottomOf="@+id/toUserProfile"
+        app:layout_constraintEnd_toStartOf="@+id/toUserProfile"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toUserProfile"
-        app:layout_constraintVertical_bias="0.073" />
-
-    <Button
-        android:id="@+id/overview_button"
-        android:layout_width="105dp"
-        android:layout_height="68dp"
-        android:layout_marginStart="88dp"
-        android:text="Overview"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/toTransactionPage"
-        app:layout_constraintTop_toBottomOf="@+id/toCategory"
-        app:layout_constraintVertical_bias="0.073" />
-
-    <Button
-        android:id="@+id/log_out_warning"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="@string/log_out"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.157"
-        app:layout_constraintStart_toEndOf="@+id/log_out"
-        app:layout_constraintTop_toTopOf="@+id/Expensebutton"
-        app:layout_constraintVertical_bias="0.003" />
+        app:layout_constraintTop_toTopOf="@+id/toUserProfile"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/log_out"
@@ -132,39 +102,51 @@
         android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.689"
+        app:layout_constraintHorizontal_bias="0.361"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/add_Expense"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintTop_toBottomOf="@+id/toUserProfile"
+        app:layout_constraintVertical_bias="0.789"
         app:srcCompat="@drawable/ic_logout"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <Button
-        android:id="@+id/Expensebutton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:text="Expense"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/log_out_warning"
+        android:layout_width="112dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="12dp"
+        android:text="@string/log_out"
+        app:layout_constraintBottom_toBottomOf="@+id/log_out"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/add_Expense"
-        app:layout_constraintTop_toBottomOf="@+id/toTransactionPage"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintStart_toEndOf="@+id/log_out"
+        app:layout_constraintTop_toTopOf="@+id/log_out"
+        app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_Expense"
         android:layout_width="54dp"
         android:layout_height="137dp"
         android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/log_out"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintHorizontal_bias="0.361"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toTransactionPage"
-        app:layout_constraintVertical_bias="0.229"
+        app:layout_constraintTop_toBottomOf="@+id/toUserProfile"
+        app:layout_constraintVertical_bias="0.385"
         app:srcCompat="@drawable/ic_add"
         tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+
+    <Button
+        android:id="@+id/Expensebutton"
+        android:layout_width="139dp"
+        android:layout_height="54dp"
+        android:text="Add Expense"
+        app:layout_constraintBottom_toBottomOf="@+id/add_Expense"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.022"
+        app:layout_constraintStart_toEndOf="@+id/add_Expense"
+        app:layout_constraintTop_toTopOf="@+id/add_Expense"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
