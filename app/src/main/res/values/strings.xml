@@ -36,6 +36,7 @@
         <item>Other</item>
     </string-array>
 
+
     <string-array name="cashFrom">
         <item>Please select money category</item>
         <item>Cash</item>
