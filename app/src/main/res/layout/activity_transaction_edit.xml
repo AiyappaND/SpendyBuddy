@@ -166,7 +166,6 @@
     <EditText
 
         android:id="@+id/note"
-        style="?android:spinnerStyle"
         android:layout_width="322dp"
         android:layout_height="52dp"
         android:layout_marginTop="210dp"
