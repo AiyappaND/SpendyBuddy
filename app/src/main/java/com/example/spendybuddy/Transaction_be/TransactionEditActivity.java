@@ -33,12 +33,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.spendybuddy.LandingPageActivity;
 import com.example.spendybuddy.R;
 import com.example.spendybuddy.TransactionActivity;
 import com.example.spendybuddy.data.model.Transaction;
 import com.example.spendybuddy.data.model.TransactionType;
 import com.example.spendybuddy.utils.RTDB;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -151,6 +153,16 @@ public class TransactionEditActivity extends AppCompatActivity {
                Glide.with(this).load(m.getImage()).into(mImageView);
            }
        }
+
+        FloatingActionButton home = findViewById(R.id.home5_button);
+        home.setOnClickListener(view -> {
+            Intent intent = new Intent(TransactionEditActivity.this, LandingPageActivity.class);
+            Bundle bundle = getIntent().getExtras();
+            bundle.putString("username",username);
+            intent.putExtras(bundle);
+            startActivity(intent);
+
+        });
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
