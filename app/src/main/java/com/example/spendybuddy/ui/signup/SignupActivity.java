@@ -96,7 +96,15 @@ public class SignupActivity extends AppCompatActivity {
         addUserToDatabase(user, userDeets);
         Intent landingPageIntent = new Intent(getApplicationContext(),
                 LandingPageActivity.class);
-        landingPageIntent.putExtra("username", user.getUserId());
+//        landingPageIntent.putExtra("username", user.getUserId());
+//        startActivity(landingPageIntent);
+        Bundle data1 = new Bundle();
+        data1.putString("username",username);
+
+
+
+
+        landingPageIntent.putExtras(data1);
         startActivity(landingPageIntent);
     }
 
