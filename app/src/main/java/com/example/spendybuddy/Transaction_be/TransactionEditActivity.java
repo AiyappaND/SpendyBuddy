@@ -137,8 +137,10 @@ public class TransactionEditActivity extends AppCompatActivity {
                 }
             }
         });
-       if(m.getImage() != null || !m.getImage().equals("")){
-            Glide.with(this).load(m.getImage()).into(mImageView);
+       if(m.getImage() != null){
+           if (!m.getImage().equals("")) {
+               Glide.with(this).load(m.getImage()).into(mImageView);
+           }
        }
 
         submitButton.setOnClickListener(new View.OnClickListener() {
