@@ -6,10 +6,14 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.spendybuddy.LandingPageActivity;
 import com.example.spendybuddy.R;
+import com.example.spendybuddy.TransactionActivity;
 import com.example.spendybuddy.data.model.Transaction;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -59,6 +63,21 @@ public class OverviewTransactionActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+
+        FloatingActionButton home = findViewById(R.id.home3_button);
+        home.setOnClickListener(view -> {
+            Intent intent = new Intent(OverviewTransactionActivity.this, LandingPageActivity.class);
+            Bundle bundle = getIntent().getExtras();
+            if(bundle != null){
+                user_id = bundle.getString("username");
+
+            }
+            bundle.putString("username",user_id);
+
+            intent.putExtras(bundle);
+            startActivity(intent);
+
         });
 
 

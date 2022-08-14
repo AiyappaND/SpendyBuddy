@@ -31,6 +31,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 
+import com.example.spendybuddy.Transaction_be.OverviewTransactionActivity;
 import com.example.spendybuddy.data.model.Transaction;
 import com.example.spendybuddy.data.model.TransactionType;
 import com.example.spendybuddy.utils.RTDB;
@@ -101,6 +102,9 @@ public class TransactionActivity extends AppCompatActivity {
         FloatingActionButton home = findViewById(R.id.home_button);
         home.setOnClickListener(view -> {
             Intent intent = new Intent(TransactionActivity.this, LandingPageActivity.class);
+            Bundle bundle = getIntent().getExtras();
+            bundle.putString("username",username);
+            intent.putExtras(bundle);
             startActivity(intent);
 
         });
