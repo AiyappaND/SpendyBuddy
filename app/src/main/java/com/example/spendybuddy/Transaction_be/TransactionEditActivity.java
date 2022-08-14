@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.spendybuddy.R;
+import com.example.spendybuddy.TransactionActivity;
 import com.example.spendybuddy.data.model.Transaction;
 import com.example.spendybuddy.data.model.TransactionType;
 import com.example.spendybuddy.utils.RTDB;
@@ -95,24 +96,32 @@ public class TransactionEditActivity extends AppCompatActivity {
         else{
             String date = "";
         }
+
+        // Where the money is from
+        Spinner fromSpinner = findViewById(R.id.fromBucket);
+        ArrayAdapter<String> myAdapter2 = new ArrayAdapter<String>(TransactionEditActivity.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.cashFrom));
+        myAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        fromSpinner.setAdapter(myAdapter2);
+
         TransactionType type = m.getTransactionType();
         Double amountDouble = m.getAmount();
         submitButton = findViewById(R.id.Submit_button);
-//        amount = findViewById(R.id.amount_ET);
-////        amount.setText(String.valueOf(amountDouble));
-//        dateButton = findViewById(R.id.datePickerButton);
-//        categorySpinner = findViewById(R.id.categoryDropDown);
-//
-////        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TransactionEditActivity.this,
-////                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.categories));
-////        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-////        categorySpinner.setAdapter(myAdapter);
-////        String.valueOf(categorySpinner.getSelectedItem());
-//
-////        int spinnerpostion = myAdapter.getPosition(String.valueOf(type));
-////        categorySpinner.setSelection(spinnerpostion);
-//        note = findViewById(R.id.note);
-//        note.setText(m.getDescription());
+        amount = findViewById(R.id.amount_ET);
+        amount.setText(String.valueOf(amountDouble));
+        dateButton = findViewById(R.id.datePickerButton);
+        categorySpinner = findViewById(R.id.categoryDropDown);
+
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(TransactionEditActivity.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.categories));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        categorySpinner.setAdapter(myAdapter);
+        String.valueOf(categorySpinner.getSelectedItem());
+
+        int spinnerpostion = myAdapter.getPosition(String.valueOf(type));
+        categorySpinner.setSelection(spinnerpostion);
+        note = findViewById(R.id.note);
+        note.setText(m.getDescription());
         mCaptureBtn = findViewById(R.id.capture_image_btn);
         mImageView = findViewById(R.id.image_view);
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
