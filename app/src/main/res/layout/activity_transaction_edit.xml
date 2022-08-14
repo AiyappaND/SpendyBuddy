@@ -198,15 +198,16 @@
 
     <ImageView
         android:id="@+id/image_view"
-        android:layout_width="241dp"
-        android:layout_height="61dp"
+        android:layout_width="276dp"
+        android:layout_height="161dp"
         android:scaleType="centerCrop"
         android:src="@drawable/ic_baseline_image_24"
         app:layout_constraintBottom_toTopOf="@+id/Submit_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Expense_button"
-        app:layout_constraintVertical_bias="0.912"
+        app:layout_constraintVertical_bias="0.925"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -228,7 +229,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/home_button"
+        android:id="@+id/home5_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
