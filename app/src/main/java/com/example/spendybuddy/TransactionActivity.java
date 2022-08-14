@@ -73,7 +73,7 @@ public class TransactionActivity extends AppCompatActivity {
         dateButton = findViewById(R.id.datePickerButton);
         dateButton.setText(getTodaysDate());
         addDb = FirebaseDatabase.getInstance().getReference("transactions");
-
+        db = new RTDB();
         username = getIntent().getExtras().getString("username");
 
         dollarAmount = (EditText) findViewById(R.id.amount_ET);
