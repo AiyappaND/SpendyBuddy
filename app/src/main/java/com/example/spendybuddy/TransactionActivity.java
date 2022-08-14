@@ -136,34 +136,47 @@ public class TransactionActivity extends AppCompatActivity {
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                Double newAmount = Double.valueOf(String.valueOf(dollarAmount.getText()));
-                String newDescription = String.valueOf(note.getText());
-                String newType = String.valueOf(categorySpinner.getSelectedItem());
-                String newDate = String.valueOf(dateButton.getText());
-
-
-                transaction = new Transaction(
-                     newAmount, username, TransactionType.valueOf(newType), newDate
-                );
-                if (newDescription.length() > 0){
-                    transaction.setDescription(newDescription);
+                if (dollarAmount.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Please enter amount" ,
+                            Toast.LENGTH_LONG).show();
+                }
+                else if (note.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Please enter description/note" ,
+                            Toast.LENGTH_LONG).show();
+                }
+                else if (String.valueOf(categorySpinner.getSelectedItem()).equals("Please select the category")) {
+                    Toast.makeText(getApplicationContext(), "Please select category" ,
+                            Toast.LENGTH_LONG).show();
                 }
 
-                System.out.println("HERE");
-                System.out.println(transaction);
-                System.out.println(transaction.getId()+ " " + transaction.getTransactionType()+ " " + transaction.getAccount_id()+ " " + transaction.getDate()+ " " + transaction.getDescription()+ " " + transaction.getAmount());
+                else {
+                    Double newAmount = Double.valueOf(String.valueOf(dollarAmount.getText()));
+                    String newDescription = String.valueOf(note.getText());
+                    String newType = String.valueOf(categorySpinner.getSelectedItem());
+                    String newDate = String.valueOf(dateButton.getText());
 
-                if(image_uri != null){
-                    uploadToFirebase(image_uri);
 
-                }
+                    transaction = new Transaction(
+                            newAmount, username, TransactionType.valueOf(newType), newDate
+                    );
+                    if (newDescription.length() > 0){
+                        transaction.setDescription(newDescription);
+                    }
+
+                    System.out.println("HERE");
+                    System.out.println(transaction);
+                    System.out.println(transaction.getId()+ " " + transaction.getTransactionType()+ " " + transaction.getAccount_id()+ " " + transaction.getDate()+ " " + transaction.getDescription()+ " " + transaction.getAmount());
+
+                    if(image_uri != null){
+                        uploadToFirebase(image_uri);
+
+                    }
 //                    db.updateTransaction(m.getId(), m);
 
-                addDb.child(transaction.getId()).setValue(transaction);
+                    addDb.child(transaction.getId()).setValue(transaction);
 
-                finish();
+                    finish();
+                }
             }
         });
 
